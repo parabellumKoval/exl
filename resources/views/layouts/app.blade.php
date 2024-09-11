@@ -12,14 +12,34 @@
         <meta name="description" content="{{ $landing->seo['meta_description'] ?? '' }}"></meta>
       @endif
 
-      @if($landing->head_stack)
-        @foreach($landing->head_stack as $tag)
-        {!! $tag['tag'] !!}
+      @hasSection('meta_keywords')
+        <meta name="keywords" content="@yield('meta_keywords')" />
+      @else
+        <meta name="keywords" content="{{ $landing->seo['meta_keywords'] ?? '' }}"></meta>
+      @endif
+
+      @if(isset($in_index) && !$in_index)
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+      @endif
+
+      <!-- SEO TAGS -->
+      @if($landing->seoTags)
+        @foreach($landing->seoTags as $tag)
+          {!! $tag->tag !!}
         @endforeach
       @endif
 
-      @if($landing->publicCssLink)
-        <link href="{{ $landing->publicCssLink }}" rel="stylesheet" />
+      <!-- COMMON TAGS -->
+      @if($landing->head_stack)
+        @foreach($landing->head_stack as $tag)
+          {!! $tag['tag'] !!}
+        @endforeach
+      @endif
+      
+      @if($landing->allCssLinks)
+        @foreach($landing->allCssLinks as $link)
+          <link href="{{ $link }}" rel="stylesheet" onload="this.media='all'" />
+        @endforeach
       @endif
 
       <!-- GOOGLE RECAPTCHA -->
@@ -45,8 +65,28 @@
       @endif
 
 
-      @if($landing->publicJsLink)
-        <script type="text/javascript" src="{{ $landing->publicJsLink }}"></script>
+
+      @if($landing->allJsLinks)
+        @foreach($landing->allJsLinks as $link)
+          <script async type="text/javascript" src="{{ $link }}"></script>
+        @endforeach
+      @endif
+
+      @if($landing->timeoutRedirect)
+        <script>
+          const timeout = {{ $landing->timeoutRedirect['timeout'] }};
+          const url = "{{ $landing->timeoutRedirect['url'] }}";
+
+          let blankLinks = document.querySelectorAll("a[target=_blank]");
+
+          blankLinks.forEach(function(elem) {
+            elem.addEventListener('click', () => {
+              setTimeout(() => {
+                window.location.replace(url);
+              }, timeout);
+            })
+          })
+        </script>
       @endif
 
       @stack('footer')

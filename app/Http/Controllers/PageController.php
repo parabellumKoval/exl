@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Spatie\SchemaOrg\Graph;
+use Spatie\SchemaOrg\Schema;
+
 use App\Models\Page;
 use App\Models\Review;
 
@@ -29,8 +32,11 @@ class PageController extends Controller
       $query->where('key', $key);
     })->first();
 
+    $schema_org = $this->getSchemaOrg();
+
     return view('pages.index', [
-      'page' => $page
+      'page' => $page,
+      'schema_org' => $schema_org
     ]);
   }
   
@@ -46,10 +52,34 @@ class PageController extends Controller
 
     $page = Page::where('slug', $slug)->whereHas('landing', function($query) use ($key) {
       $query->where('key', $key);
-    })->first();
+    })->where('is_home', false)->firstOrFail();
+
+    $schema_org = $this->getSchemaOrg($page);
 
     return view('pages.page', [
-      'page' => $page
+      'page' => $page,
+      'schema_org' => $schema_org
     ]);
+  }
+  
+  /**
+   * getSchemaOrg
+   *
+   * @param  mixed $page
+   * @return void
+   */
+  private function getSchemaOrg($page = null) {
+    $items = [];
+
+    $items[] = Schema::breadcrumbList()->name('Главная')->url(url('/'));
+
+    if($page){
+      $items[] = Schema::breadcrumbList()->name($page->name)->url(url('/' . $page->slug));
+    }
+    
+    $schema_org = Schema::itemList()
+      ->itemListElement($items);
+
+    return $schema_org;
   }
 }

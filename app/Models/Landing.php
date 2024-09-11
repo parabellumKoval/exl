@@ -30,6 +30,7 @@ class Landing extends Model
 
     protected $casts = [
       'seo' => 'array',
+      'extras' => 'array',
       'head_stack' => 'array'
     ];
 
@@ -88,20 +89,38 @@ class Landing extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-        
-    /**
-     * getPublicCssLinkAttribute
-     *
-     * @return void
-     */
-    public function getPublicCssLinkAttribute() {
-      $path = $this->key . '/styles.css';
-
-      if($this->css_link) {
-        return remote_url('cdn/' . $path);
+    
+    public function getTimeoutRedirectAttribute() {
+      if($this->extras['timeout'] && $this->extras['redirect_link']) {
+        return [
+          'timeout' => $this->extras['timeout'] * 1000,
+          'url' => $this->extras['redirect_link']
+        ];
       }else {
         return null;
       }
+    }
+    
+    /**
+     * getAllCssLinksAttribute
+     *
+     * @return void
+     */
+    public function getAllCssLinksAttribute() {
+      $all_files = Storage::disk($this->key)->allFiles('css');
+      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files);
+      return $pathes;
+    }
+    
+    /**
+     * getAllJsLinksAttribute
+     *
+     * @return void
+     */
+    public function getAllJsLinksAttribute() {
+      $all_files = Storage::disk($this->key)->allFiles('js');
+      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files);
+      return $pathes;
     }
     
     /**
@@ -118,7 +137,47 @@ class Landing extends Model
         return null;
       }
     }
-
+    
+    /**
+     * getHeaderHtmlAttribute
+     *
+     * @param  mixed $value
+     * @return void
+     */
+    public function getHeaderHtmlAttribute($value) {
+      if(!empty($value)){
+        return json_decode($value);
+      }else {
+        return null;
+      }
+    }
+    
+    /**
+     * getFooterHtmlAttribute
+     *
+     * @param  mixed $value
+     * @return void
+     */
+    public function getFooterHtmlAttribute($value) {
+      if(!empty($value)){
+        return json_decode($value);
+      }else {
+        return null;
+      }
+    }
+    
+    /**
+     * getSeoTagsAttribute
+     *
+     * @return void
+     */
+    public function getSeoTagsAttribute() {
+      if(isset($this->seo['head_tags']) && !empty($this->seo['head_tags'])){
+        return json_decode($this->seo['head_tags']);
+      }else {
+        return null;
+      }
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

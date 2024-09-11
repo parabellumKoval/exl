@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Custom Filesystem
+        App\Providers\DiskServiceProdiver::class,
     ],
 
     /*

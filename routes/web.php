@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::group([
   'namespace'  => 'App\Http\Controllers',
 ], function () {
-  Route::get('/', 'PageController@index');
-  Route::get('/{slug}', 'PageController@page');
+  Route::get('/', 'PageController@index')->name('home');
+  Route::get('/{slug}', 'PageController@page')->name('page');
 
   Route::post('/review', 'ReviewController@create');
+  Route::post('/review/{id}/like', 'ReviewController@like');
+  Route::post('/review/{id}/remove-like', 'ReviewController@removeLike');
 });

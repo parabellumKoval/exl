@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class Form extends Component
 {
+    public $replyId = null;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($replyId = null)
     {
-        //
+        $this->replyId = $replyId;
     }
 
     /**
