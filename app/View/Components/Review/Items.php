@@ -71,7 +71,7 @@ class Items extends Component
 
       $this->sum_reviews = $this->reviews->count();
       $this->sum_rating =$this->reviews->whereNotNull('rating')->count();
-      $this->total_rating = round($this->reviews->sum('rating') / $this->sum_reviews, 2);
+      $this->total_rating = $this->sum_reviews? round($this->reviews->sum('rating') / $this->sum_reviews, 2): 0;
 
       $this->user_likes = session('reviews_liked');
     }
