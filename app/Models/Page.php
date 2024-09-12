@@ -83,9 +83,14 @@ class Page extends Model
     public function getTrueContentAttribute() {
       $content = json_decode($this->content);
 
-      foreach($this->fields as $field) {
-        $content = preg_replace('/{{--[\s]*' . $field['shortcode'] .'[\s]*--}}/i', $field['value'], $content);
+      $content = !empty($content)? $content: '';
+
+      if(!empty($this->fields)) {
+        foreach($this->fields as $field) {
+          $content = preg_replace('/{{--[\s]*' . $field['shortcode'] .'[\s]*--}}/i', $field['value'], $content);
+        }
       }
+      
       return $content;
     }
 
