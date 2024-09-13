@@ -11,7 +11,6 @@
 
   {!! $page->trueContent !!}
 
-FROM GIT
 @endsection
 
 @push('footer')
