@@ -1,29 +1,3 @@
-<section class="comments-form">
-  <div class="comments-form-item">
-    <div class="comments-form-item-title">
-      <h3>Hinterlassen Sie eine Bewertung</h3>
-      <div class="comments-form-item-stars rating"><span class="stars-container" score="5" id="223"><span
-            class="star" id="star5" star-score="5"></span><span class="star" id="star4"
-            star-score="4"></span><span class="star" id="star3" star-score="3"></span><span class="star"
-            id="star2" star-score="2"></span><span class="star" id="star1" star-score="1"></span></span></div>
-    </div>
-    <form action="#">
-      <div class="comments-form-item-position">
-        <div class="comments-form-item-position-left">
-          <input type="text" placeholder="Ihr Name*">
-          <div class="check-robot">
-            <input type="checkbox"><span>Ich bin kein Roboter</span>
-          </div>
-          <button class=".comments-form-item-btn" type="submit">Feedback senden</button>
-        </div>
-        <div class="comments-form-item-position-right">
-          <textarea name="message"></textarea>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
-
 <div>
   id {{ $replyId }}
     @if ($errors->any())
