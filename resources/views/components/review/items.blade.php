@@ -368,9 +368,9 @@
 <div>
 
     @if(!$is_reply)
-      <div>Средняя оценка: {{ $total_rating }}<div>
-      <div>Всего отзывов: {{ $sum_reviews }}<div>
-      <div>Всего оценок: {{ $sum_rating }}<div>
+      <div>Средняя оценка: {{ $total_rating }}</div>
+      <div>Всего отзывов: {{ $sum_reviews }}</div>
+      <div>Всего оценок: {{ $sum_rating }}</div>
 
       <form method="GET" action="{{ url()->current() }}"> 
         <select name="reviews_sort" onchange="this.form.submit()">

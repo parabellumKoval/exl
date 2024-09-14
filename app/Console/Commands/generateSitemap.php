@@ -54,12 +54,12 @@ class generateSitemap extends Command
       $sitemap = Sitemap::create()
           ->add(Url::create('/')
               ->setLastModificationDate($last_mod)
-              ->setPriority(0.1));
+              ->setPriority(0.9));
 
       foreach($pages as $page) {
         $sitemap = $sitemap->add(Url::create('/' . $page->slug)
           ->setLastModificationDate($page->created_at)
-          ->setPriority(0.1));
+          ->setPriority(0.6));
       }
 
       $sitemap = $sitemap->writeToFile($url);

@@ -10,6 +10,7 @@
   @endif
 
   {!! $page->trueContent !!}
+
 @endsection
 
 @push('footer')
