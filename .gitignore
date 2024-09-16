@@ -1,6 +1,11 @@
 /node_modules
 /public/hot
 /public/storage
+/public/images
+/public/files
+/public/js
+/public/css
+/public/favicon.ico
 /storage/*.key
 /vendor
 .env
