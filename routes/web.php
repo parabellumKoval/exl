@@ -19,6 +19,7 @@ Route::group([
 ], function () {
   Route::get('/', 'PageController@index')->name('home');
   Route::get('/{slug}', 'PageController@page')->name('page');
+  // Route::get('/', 'PageController@closed')->name('closed');
 
   Route::post('/review', 'ReviewController@create');
   Route::post('/review/{id}/like', 'ReviewController@like');

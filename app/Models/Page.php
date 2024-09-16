@@ -27,7 +27,8 @@ class Page extends Model
     protected $casts = [
       'seo' => 'array',
       'fields' => 'array',
-      'extras' => 'array'
+      'extras' => 'array',
+      'head_stack' => 'array'
     ];
 
     protected $fakeColumns = ['extras'];
@@ -84,10 +85,16 @@ class Page extends Model
       $content = json_decode($this->content);
 
       $content = !empty($content)? $content: '';
-
+      
       if(!empty($this->fields)) {
         foreach($this->fields as $field) {
-          $content = preg_replace('/{{--[\s]*' . $field['shortcode'] .'[\s]*--}}/i', $field['value'], $content);
+          if(isset($field['value']) && !empty($field['value'])) {
+            $value = isset($field['is_clear_tags']) && $field['is_clear_tags'] === '1'? strip_tags($field['value']): $field['value'];
+          }else{
+            $value = '';
+          }
+
+          $content = preg_replace('/{{--[\s]*' . $field['shortcode'] .'[\s]*--}}/i', $value, $content);
         }
       }
       

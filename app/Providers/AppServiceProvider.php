@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
       $landing = Landing::where('key', config('app.name'))->first();
+
       View::share('landing', $landing);
     }
 }

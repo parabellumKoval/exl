@@ -4,29 +4,31 @@
   header("Pragma: no-cache"); //HTTP 1.0
   header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 ?>
+
+@php
+$meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
+$meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
+$meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
+@endphp
 <!DOCTYPE html>
-<html>
+<html lang="{{ $landing->seo['locale'] }}">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      @hasSection('meta_title')
-        <title>@yield('meta_title')</title>
-      @else
-        <title>{{ $landing->seo['meta_title'] ?? '' }}</title>
-      @endif
+      <meta property="og:title" content="{{ $meta_title }}" />
+      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }}" />
+      <meta property="og:description" content="{{ $meta_description }}" />
+      <meta property="og:locale" content="{{ $landing->seo['locale'] }}" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url"   content="{{ url()->current() }}" />
+      <meta property="og:image" content="{{ url('/images/logo.svg') }}" />
+      <meta property="og:image:secure_url" content="{{ url('/images/logo.svg') }}" />
+      <meta property="og:image:type" content="image/svg" />
 
-      @hasSection('meta_description')
-        <meta name="description" content="@yield('meta_description')"></meta>
-      @else
-        <meta name="description" content="{{ $landing->seo['meta_description'] ?? '' }}"></meta>
-      @endif
-
-      @hasSection('meta_keywords')
-        <meta name="keywords" content="@yield('meta_keywords')" />
-      @else
-        <meta name="keywords" content="{{ $landing->seo['meta_keywords'] ?? '' }}"></meta>
-      @endif
+      <title>{{ $meta_title }}</title>
+      <meta name="description" content="{{ $meta_description }}"></meta>
+      <meta name="keywords" content="{{ $meta_keywords }}"></meta>
 
       @if(isset($in_index) && !$in_index)
         <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
@@ -52,13 +54,16 @@
         @endforeach
       @endif
 
+      <!-- header stack -->
+      @stack('header')
+
       <!-- GOOGLE RECAPTCHA -->
       {!! htmlScriptTagJsApi() !!}
   </head>
   <body>
-      @if($landing->header_html)
+      @if($landing->trueHeader)
         <header>
-          {!! $landing->header_html !!}
+          {!! $landing->trueHeader !!}
         </header>
       @endif
 
@@ -68,9 +73,9 @@
         </div>
       </div>
 
-      @if($landing->footer_html)
+      @if($landing->trueFooter)
         <footer>
-          {!! $landing->footer_html ?? '' !!}
+          {!! $landing->trueFooter ?? '' !!}
         </footer>
       @endif
 

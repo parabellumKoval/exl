@@ -72,6 +72,7 @@ class ReviewController extends Controller
 
     $review = Review::create([
       'landing_id' => $landing->id,
+      'page_id' => $request->page_id ?? null,
       'parent_id' => $request->reply_id ?? null,
       'is_moderated' => 0,
       'author' => $request->author ?? null,

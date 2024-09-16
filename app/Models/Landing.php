@@ -31,7 +31,8 @@ class Landing extends Model
     protected $casts = [
       'seo' => 'array',
       'extras' => 'array',
-      'head_stack' => 'array'
+      'head_stack' => 'array',
+      'fields' => 'array'
     ];
 
     protected $fakeColumns = [];
@@ -90,6 +91,79 @@ class Landing extends Model
     |--------------------------------------------------------------------------
     */
     
+    /**
+     * getFieldsDecodedAttribute
+     *
+     * @return void
+     */
+    public function getFieldsDecodedAttribute() {
+      $fields = [];
+
+      foreach($this->fields as $key => $field) {
+        $fields[$key] = json_decode($field, true);
+      }
+
+      return $fields;
+    }
+        
+    /**
+     * trueContent
+     *
+     * @param  mixed $field
+     * @param  mixed $content
+     * @return void
+     */
+    public function trueContent($field, $content) {
+      if(isset($field['value']) && !empty($field['value'])) {
+        $value = isset($field['is_clear_tags']) && $field['is_clear_tags'] === '1'? strip_tags($field['value']): $field['value'];
+      }else{
+        $value = '';
+      }
+
+      return preg_replace('/{{--[\s]*' . $field['shortcode'] .'[\s]*--}}/i', $value, $content);
+    }
+
+    /**
+     * getTrueHeaderAttribute
+     *
+     * @return void
+     */
+    public function getTrueHeaderAttribute() {
+
+      $content = $this->header_html ?? '';
+
+      if(!empty($this->fieldsDecoded['header'])) {
+        foreach($this->fieldsDecoded['header'] as $field) {
+          $content = $this->trueContent($field, $content);
+        }
+      }
+      
+      return $content;
+    }
+    
+    /**
+     * getTrueFooterAttribute
+     *
+     * @return void
+     */
+    public function getTrueFooterAttribute() {
+
+      $content = $this->footer_html ?? '';
+      
+      if(!empty($this->fieldsDecoded['footer'])) {
+        foreach($this->fieldsDecoded['footer'] as $field) {
+          $content = $this->trueContent($field, $content);
+        }
+      }
+      
+      return $content;
+    }
+        
+    /**
+     * getTimeoutRedirectAttribute
+     *
+     * @return void
+     */
     public function getTimeoutRedirectAttribute() {
       if($this->extras['timeout'] && $this->extras['redirect_link']) {
         return [
@@ -159,6 +233,21 @@ class Landing extends Model
      * @return void
      */
     public function getFooterHtmlAttribute($value) {
+      if(!empty($value)){
+        return json_decode($value);
+      }else {
+        return null;
+      }
+    }
+
+
+    /**
+     * getClosedHtmlAttribute
+     *
+     * @param  mixed $value
+     * @return void
+     */
+    public function getClosedHtmlAttribute($value) {
       if(!empty($value)){
         return json_decode($value);
       }else {
