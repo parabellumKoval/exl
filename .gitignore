@@ -6,6 +6,7 @@
 /public/js
 /public/css
 /public/favicon.ico
+/public/robots.txt
 /storage/*.key
 /vendor
 .env
