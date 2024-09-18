@@ -42,7 +42,7 @@ class PageController extends Controller
       $reviews = [];
     }
 
-    $schema_org = $this->getSchemaOrg(null, $reviews);
+    $schema_org = $this->getSchemaOrg($page, $reviews);
 
     return view('pages.index', [
       'page' => $page,
@@ -146,12 +146,12 @@ class PageController extends Controller
   private function getSchemaOrg($page = null, $reviews = null) {
     $schema_org = null;
 
-    if(!isset($page->extras['breadcrumbs']) || $page->extras['breadcrumbs'] === '1') {
+    if(isset($page->extras['breadcrumbs']) && $page->extras['breadcrumbs'] === '1') {
       $items = [];
   
       $items[] = Schema::breadcrumbList()->name('Главная')->url(url('/'));
   
-      if($page){
+      if(!$page->is_home){
         $items[] = Schema::breadcrumbList()->name($page->name)->url(url('/' . $page->slug));
       }
       
@@ -160,7 +160,6 @@ class PageController extends Controller
     }
 
     if($reviews) {
-
       if($schema_org) {
         $schema_org = $schema_org->review();
       } else {
