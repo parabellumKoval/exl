@@ -79,7 +79,7 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       @if($landing->allJsLinks)
         @foreach($landing->allJsLinks as $link)
-          <script async type="text/javascript" src="{{ $link }}"></script>
+          <script type="text/javascript" src="{{ $link }}"></script>
         @endforeach
       @endif
 
