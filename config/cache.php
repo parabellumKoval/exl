@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'none'),
+    'default' => env('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
