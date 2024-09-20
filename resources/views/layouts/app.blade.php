@@ -1,10 +1,3 @@
-<?php
-  //set headers to NOT cache a page
-  header("Cache-Control: no-cache, no-store, must-revalidate"); //HTTP 1.1
-  header("Pragma: no-cache"); //HTTP 1.0
-  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-?>
-
 @php
 $meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
 $meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
