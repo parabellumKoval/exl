@@ -71,9 +71,7 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       @endif
 
       <div class="main">
-        <div class="container">
-            @yield('content')
-        </div>
+        @yield('content')
       </div>
 
       @if($landing->trueFooter)
