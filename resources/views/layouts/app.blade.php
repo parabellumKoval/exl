@@ -26,8 +26,8 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <meta property="og:image:type" content="image/svg" />
 
       <title>{{ $meta_title }}</title>
-      <meta name="description" content="{{ $meta_description }}"></meta>
-      <meta name="keywords" content="{{ $meta_keywords }}"></meta>
+      <meta name="description" content="{{ $meta_description }}" />
+      <meta name="keywords" content="{{ $meta_keywords }}" />
       <link rel="canonical" href="{{ url()->current() }}" />
       
       @if(isset($in_index) && !$in_index)
