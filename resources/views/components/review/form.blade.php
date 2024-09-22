@@ -52,7 +52,9 @@
 
           <!-- captcha field -->
           <div class="check-robot">
-            <input type="checkbox"><span>Ich bin kein Roboter</span>
+            <label class="checkbox">
+                <input type="checkbox"><span>Ich bin kein Roboter</span>
+            </label>
           </div>
 
           <!-- submit button -->
