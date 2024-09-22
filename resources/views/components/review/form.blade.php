@@ -56,7 +56,7 @@
           </div>
 
           <!-- submit button -->
-          <button type="submit" class=".comments-form-item-btn" type="submit">Feedback senden</button>
+          <button type="submit" class="comments-form-item-btn" type="submit">Feedback senden</button>
         </div>
 
         <!-- text field -->
