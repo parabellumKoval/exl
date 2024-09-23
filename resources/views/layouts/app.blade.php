@@ -1,14 +1,9 @@
-<?php
-  //set headers to NOT cache a page
-  header("Cache-Control: no-cache, no-store, must-revalidate"); //HTTP 1.1
-  header("Pragma: no-cache"); //HTTP 1.0
-  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-?>
-
 @php
+
 $meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
 $meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
 $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
+
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $landing->seo['locale'] }}">
@@ -27,8 +22,8 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <meta property="og:image:type" content="image/svg" />
 
       <title>{{ $meta_title }}</title>
-      <meta name="description" content="{{ $meta_description }}"></meta>
-      <meta name="keywords" content="{{ $meta_keywords }}"></meta>
+      <meta name="description" content="{{ $meta_description }}" />
+      <meta name="keywords" content="{{ $meta_keywords }}" />
       <link rel="canonical" href="{{ url()->current() }}" />
       
       @if(isset($in_index) && !$in_index)
@@ -71,9 +66,7 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       @endif
 
       <div class="main">
-        <div class="container">
-            @yield('content')
-        </div>
+        @yield('content')
       </div>
 
       @if($landing->trueFooter)
@@ -86,7 +79,7 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       @if($landing->allJsLinks)
         @foreach($landing->allJsLinks as $link)
-          <script async type="text/javascript" src="{{ $link }}"></script>
+          <script type="text/javascript" src="{{ $link }}"></script>
         @endforeach
       @endif
 
