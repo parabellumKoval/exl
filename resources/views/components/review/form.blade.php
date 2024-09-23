@@ -21,10 +21,13 @@
       <h3>Hinterlassen Sie eine Bewertung</h3>
       @if(!$replyId)
         <div class="comments-form-item-stars rating">
-          <span class="stars-container" score="5" id="223"><span
-            class="star" id="star5" star-score="5"></span><span class="star" id="star4"
-            star-score="4"></span><span class="star" id="star3" star-score="3"></span><span class="star"
-            id="star2" star-score="2"></span><span class="star" id="star1" star-score="1"></span></span>
+            <span class="stars-container" score="5" id="223">
+                <span class="star" id="star1" star-score="1"></span>
+                <span class="star" id="star2" star-score="2"></span>
+                <span class="star" id="star3" star-score="3"></span>
+                <span class="star" id="star2" star-score="4"></span>
+                <span class="star" id="star5" star-score="5"></span>
+            </span>
         </div>
       @endif
     </div>
