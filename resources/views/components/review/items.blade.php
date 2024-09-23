@@ -25,23 +25,23 @@
 
     <div class="comments-item-footer">
       @if(!empty($user_likes) && in_array($review->id, $user_likes))
-        <form method="POST" action="/review/{{ $review->id }}/remove-like"  class="comments-item-footer-like">
+        <form method="POST" action="/review/{{ $review->id }}/remove-like"  class="comments-item-footer-like active">
           @csrf
           <img src="./images/thumbup-icon.svg" alt="">
-          <button>hilfreich</button>
+          <button>{{ $landing->strings['review_like_btn'] }}</button>
         </form>
       @else
         <form method="POST" action="/review/{{ $review->id }}/like"  class="comments-item-footer-like">
           @csrf
           <img src="./images/thumbup-icon.svg" alt="">
-          <button>hilfreich</button>
+          <button>{{ $landing->strings['review_like_btn'] }}</button>
         </form>
       @endif
 
       @if(!$is_reply)
         <div class="comments-item-footer-answer">
           <img src="./images/comment-icon.svg" alt="">
-          <button id="comment-btn-{{ $review->id }}">Kommentar</button>
+          <button id="comment-btn-{{ $review->id }}">{{ $landing->strings['review_reply_btn'] }}</button>
         </div>
       @endif
 

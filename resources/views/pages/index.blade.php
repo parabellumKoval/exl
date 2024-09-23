@@ -9,17 +9,15 @@
   {!! $page->trueContent !!}
 
   @if($page->is_reviews)
-    <div class="container">
-      <x-review.total :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating"/>
-      
-      @if($reviews && $reviews->count())
-        <div class="comments-items comments-hide">
-          <x-review.items :reviews="$reviews" />
-        </div>
-      @endif
-      
-      <x-review.form :page-id="$page->id" />
-    </div>
+    <x-review.total :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating"/>
+    
+    @if($reviews && $reviews->count())
+      <div class="comments-items comments-hide">
+        <x-review.items :reviews="$reviews" />
+      </div>
+    @endif
+    
+    <x-review.form :page-id="$page->id" />
   @endif
 @endsection
 
