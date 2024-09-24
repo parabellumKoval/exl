@@ -15,8 +15,8 @@
       <div class="comments-items comments-hide" data-item="reviewsBlock">
         <x-review.items :reviews="$reviews" />
         <div class="read-more" data-action="showMoreReviews">
-          <span class="state-closed" data-item="showMoreShow">MORE</span>
-          <span class="state-opened hide" data-item="showMoreHide">HIDE</span>
+          <span class="state-closed" data-item="showMoreShow">{{ $landing->strings['review_block_more_show'] }}</span>
+          <span class="state-opened hide" data-item="showMoreHide">{{ $landing->strings['review_block_more_hide'] }}</span>
         </div>
       </div>
     @endif
