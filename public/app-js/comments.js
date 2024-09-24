@@ -96,9 +96,11 @@
 
     btn.addEventListener("click", () => {
       // CLASS HIDE
-      wrapper.classList.toggle('comments-hide')
-      btn.querySelector('[data-item=showMoreHide]').classList.toggle('hide')
-      btn.querySelector('[data-item=showMoreShow]').classList.toggle('hide')
+      wrapper.classList.toggle('hide')
+      btn.classList.toggle('opened')
+      
+      // btn.querySelector('[data-item=showMoreHide]').classList.toggle('hide')
+      // btn.querySelector('[data-item=showMoreShow]').classList.toggle('hide')
     })
   }
 
@@ -116,7 +118,7 @@
 
       item.addEventListener("click", () => {
          // CLASS HIDE
-        replyForm.classList.toggle('form-hide')
+        replyForm.classList.toggle('hide')
       });
     })
   }
