@@ -75,13 +75,15 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
         </footer>
       @endif
 
-
-
       @if($landing->allJsLinks)
         @foreach($landing->allJsLinks as $link)
           <script type="text/javascript" src="{{ $link }}"></script>
         @endforeach
       @endif
+
+      <!-- Base js -->
+      <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
+      <script type="text/javascript" src="{{ url('/app-js/comments.js') }}"></script>
 
       @if($landing->timeoutRedirect)
         <script>

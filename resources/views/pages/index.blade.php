@@ -12,8 +12,12 @@
     <x-review.total :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating"/>
     
     @if($reviews && $reviews->count())
-      <div class="comments-items comments-hide">
+      <div class="comments-items comments-hide" data-item="reviewsBlock">
         <x-review.items :reviews="$reviews" />
+        <div class="read-more" data-action="showMoreReviews">
+          <span class="state-closed" data-item="showMoreShow">MORE</span>
+          <span class="state-opened hide" data-item="showMoreHide">HIDE</span>
+        </div>
       </div>
     @endif
     

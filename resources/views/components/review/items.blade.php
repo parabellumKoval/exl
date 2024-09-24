@@ -41,7 +41,7 @@
       @if(!$is_reply)
         <div class="comments-item-footer-answer">
           <img src="./images/comment-icon.svg" alt="">
-          <button id="comment-btn-{{ $review->id }}">{{ $landing->strings['review_reply_btn'] }}</button>
+          <button id="comment-btn-{{ $review->id }}" data-action="openReply">{{ $landing->strings['review_reply_btn'] }}</button>
         </div>
       @endif
 
@@ -60,5 +60,4 @@
   @if($answers && $answers->count())
     <x-review.items :reviews="$answers" :is-reply="true" />
   @endif
-  
 @endforeach

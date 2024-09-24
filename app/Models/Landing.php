@@ -32,7 +32,8 @@ class Landing extends Model
       'seo' => 'array',
       'extras' => 'array',
       'head_stack' => 'array',
-      'fields' => 'array'
+      'fields' => 'array',
+      'strings' => 'array'
     ];
 
     protected $fakeColumns = [];
