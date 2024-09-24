@@ -1,5 +1,5 @@
 
-<section class="comments-form {{ $replyId? 'comments-answer-form form-hide': '' }}"  data-item="reviewForm" data-form-id="{{ $replyId }}">
+<section class="comments-form {{ $replyId? 'comments-answer-form hide': '' }}"  data-item="reviewForm" data-form-id="{{ $replyId }}">
   @if ($errors->any())
     <div class="alert alert-danger">
       <ul>
