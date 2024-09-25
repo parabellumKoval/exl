@@ -17,9 +17,9 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <meta property="og:locale" content="{{ $landing->seo['locale'] }}" />
       <meta property="og:type" content="website" />
       <meta property="og:url"   content="{{ url()->current() }}" />
-      <meta property="og:image" content="{{ url('/images/logo.svg') }}" />
-      <meta property="og:image:secure_url" content="{{ url('/images/logo.svg') }}" />
-      <meta property="og:image:type" content="image/svg" />
+      <meta property="og:image" content="{{ url('/images/logo.png') }}" />
+      <meta property="og:image:secure_url" content="{{ url('/images/logo.png') }}" />
+      <meta property="og:image:type" content="image/png" />
 
       <title>{{ $meta_title }}</title>
       <meta name="description" content="{{ $meta_description }}" />
@@ -54,9 +54,11 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       <!-- header stack -->
       @stack('header')
-
+      
+      @if($page->is_reviews)
       <!-- GOOGLE RECAPTCHA -->
       {!! htmlScriptTagJsApi() !!}
+      @endif
   </head>
   <body>
       @if($landing->trueHeader)
@@ -83,11 +85,13 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
         @endforeach
       @endif
 
+      @if($page->is_reviews)
       <!-- Base js -->
       <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
       <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
       <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
-
+      @endif
+      
       @if($landing->timeoutRedirect)
         <script>
           const timeout = {{ $landing->timeoutRedirect['timeout'] }};
