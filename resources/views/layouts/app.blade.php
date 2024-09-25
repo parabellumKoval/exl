@@ -24,7 +24,9 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <title>{{ $meta_title }}</title>
       <meta name="description" content="{{ $meta_description }}" />
       <meta name="keywords" content="{{ $meta_keywords }}" />
+      
       <link rel="canonical" href="{{ url()->current() }}" />
+      <link rel="shortlink" href="{{ url()->current() }}" />
       
       @if(isset($in_index) && !$in_index)
         <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
