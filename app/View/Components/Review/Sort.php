@@ -9,24 +9,22 @@ use Spatie\SchemaOrg\Schema;
 
 use App\Models\Review;
 
-class Items extends Component
+class Sort extends Component
 {
-    public $reviews;
-    public $is_reply;
-    
-    public $user_likes = [];
+    public $sorting_options = [
+      "date_desc" => "Сначала самые новые",
+      "date_asc" => "Сначала самые старые",
+      "usefull_desc" => "Сначала полезные",
+      "usefull_asc" => "Сначала бесполезные"
+    ];
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($reviews = null, $isReply = false)
+    public function __construct()
     { 
-      $this->is_reply = $isReply;
-      $this->reviews = $reviews;
-
-      $this->user_likes = session('reviews_liked');
     }
 
     /**
@@ -36,6 +34,6 @@ class Items extends Component
      */
     public function render()
     {
-      return view('components.review.items');
+      return view('components.review.sort');
     }
 }

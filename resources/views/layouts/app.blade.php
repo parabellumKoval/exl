@@ -83,7 +83,8 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       <!-- Base js -->
       <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
-      <script type="text/javascript" src="{{ url('/app-js/comments.js') }}"></script>
+      <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
+      <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
 
       @if($landing->timeoutRedirect)
         <script>

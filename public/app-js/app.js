@@ -1,8 +1,10 @@
 var reviewsBase;
+var selectBase;
 
 document.addEventListener('DOMContentLoaded',function()
 {
-	reviewsBase = new ReviewsBase();
+	reviewsBase = new ReviewBase();
+	selectBase = new SelectBase();
 	
 	// window.addEventListener('scroll',function()
 	// {

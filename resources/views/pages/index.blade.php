@@ -9,19 +9,7 @@
   {!! $page->trueContent !!}
 
   @if($page->is_reviews)
-    <x-review.total :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating"/>
-    
-    @if($reviews && $reviews->count())
-      <div class="comments-items hide" data-item="reviewsBlock">
-        <x-review.items :reviews="$reviews" />
-        <div class="read-more" data-action="showMoreReviews">
-          <span class="state-closed" data-item="showMoreShow">{{ $landing->strings['review_block_more_show'] }}</span>
-          <span class="state-opened" data-item="showMoreHide">{{ $landing->strings['review_block_more_hide'] }}</span>
-        </div>
-      </div>
-    @endif
-    
-    <x-review.form :page-id="$page->id" />
+    <x-review.index :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating" :reviews="$reviews" :page-id="$page->id" />
   @endif
 @endsection
 

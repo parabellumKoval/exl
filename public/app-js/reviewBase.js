@@ -1,6 +1,6 @@
 (function()
 {	
-	this.ReviewsBase = function()
+	this.ReviewBase = function()
 	{
 		let defaults = {};
 		
@@ -12,14 +12,14 @@
 	
 	
 	// INIT
-	ReviewsBase.prototype.init = function()
+	ReviewBase.prototype.init = function()
 	{
 		build.call(this);
 	}
 	
 	
 	// UPDATE
-	ReviewsBase.prototype.update = function(element)
+	ReviewBase.prototype.update = function(element)
 	{}
 	
 	
@@ -86,22 +86,46 @@
   // SHOW MORE
   //  
   function setShowMoreHandler(element) {
-    const btn = document.querySelector("[data-action=showMoreReviews]")
 
-    if(!btn) {
-      return
-    }
+    const moreBtn = document.querySelector('[data-item=showMore]')
+    const lessBtn = document.querySelector('[data-item=showLess]')
 
-    const wrapper = btn.closest('div[data-item=reviewsBlock]')
-
-    btn.addEventListener("click", () => {
-      // CLASS HIDE
-      wrapper.classList.toggle('hide')
-      btn.classList.toggle('opened')
+    moreBtn.addEventListener("click", (event) => {
+      const btn = event.target
       
-      // btn.querySelector('[data-item=showMoreHide]').classList.toggle('hide')
-      // btn.querySelector('[data-item=showMoreShow]').classList.toggle('hide')
+      const wrapper = btn.closest('[data-item=reviewsBlock]')
+      wrapper.classList.toggle('hide')
+
+      btn.classList.toggle('hide')
+      lessBtn.classList.toggle('hide')
     })
+
+    lessBtn.addEventListener("click", (event) => {
+      const btn = event.target
+
+      const wrapper = btn.closest('[data-item=reviewsBlock]')
+      wrapper.classList.toggle('hide')
+
+      btn.classList.toggle('hide')
+      moreBtn.classList.toggle('hide')
+    })
+
+    // const btn = document.querySelector("[data-action=showMoreReviews]")
+
+    // if(!btn) {
+    //   return
+    // }
+
+    // const wrapper = btn.closest('div[data-item=reviewsBlock]')
+
+    // btn.addEventListener("click", () => {
+    //   // CLASS HIDE
+    //   wrapper.classList.toggle('hide')
+    //   btn.classList.toggle('opened')
+      
+    //   // btn.querySelector('[data-item=showMoreHide]').classList.toggle('hide')
+    //   // btn.querySelector('[data-item=showMoreShow]').classList.toggle('hide')
+    // })
   }
 
 
@@ -111,10 +135,10 @@
 	function setReplyHandler(element) {
     document.querySelectorAll("button[data-action=openReply]").forEach((item) => {
 
-      const itemWrapper = item.closest('div[data-comment-id]')
+      const itemWrapper = item.closest('[data-comment-id]')
       const commentId = itemWrapper.getAttribute('data-comment-id')
 
-      const replyForm = document.querySelector('.comments-form[data-form-id="' + commentId + '"]')
+      const replyForm = document.querySelector('.comment-form[data-form-id="' + commentId + '"]')
 
       item.addEventListener("click", () => {
          // CLASS HIDE
