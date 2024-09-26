@@ -28,12 +28,18 @@
       @if(!empty($user_likes) && in_array($review->id, $user_likes))
         <form method="POST" action="/review/{{ $review->id }}/remove-like#review-{{ $review->id }}"  class="comment-footer-like active">
           @csrf
+          @if($review->likes > 0)
+            <div class="comment-likes">{{ $review->likes }}</div>
+          @endif
           <img src="./images/thumbup-icon.svg" alt="">
           <button>{{ $landing->strings['review_like_btn'] }}</button>
         </form>
       @else
         <form method="POST" action="/review/{{ $review->id }}/like#review-{{ $review->id }}"  class="comment-footer-like">
           @csrf
+          @if($review->likes > 0)
+            <div class="comment-likes">{{ $review->likes }}</div>
+          @endif
           <img src="./images/thumbup-icon.svg" alt="">
           <button>{{ $landing->strings['review_like_btn'] }}</button>
         </form>
