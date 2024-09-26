@@ -90,6 +90,10 @@
     const moreBtn = document.querySelector('[data-item=showMore]')
     const lessBtn = document.querySelector('[data-item=showLess]')
 
+    if(!moreBtn || !lessBtn) {
+      return;
+    }
+
     moreBtn.addEventListener("click", (event) => {
       const btn = event.target
       

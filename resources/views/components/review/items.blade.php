@@ -1,5 +1,5 @@
 @foreach($reviews as $review)
-<li class="comment {{ $is_reply? 'comments-answer': '' }}" data-comment-id="{{ $review->id }}">
+<li class="comment {{ $is_reply? 'comments-answer': '' }}" data-comment-id="{{ $review->id }}" id="review-{{ $review->id }}">
   <article class="comment-article" id="article-comment-1">
     <div class="comment-header">
       <div class="comment-user">
@@ -26,13 +26,13 @@
     </div>
     <div class="comment-footer">
       @if(!empty($user_likes) && in_array($review->id, $user_likes))
-        <form method="POST" action="/review/{{ $review->id }}/remove-like"  class="comment-footer-like active">
+        <form method="POST" action="/review/{{ $review->id }}/remove-like#review-{{ $review->id }}"  class="comment-footer-like active">
           @csrf
           <img src="./images/thumbup-icon.svg" alt="">
           <button>{{ $landing->strings['review_like_btn'] }}</button>
         </form>
       @else
-        <form method="POST" action="/review/{{ $review->id }}/like"  class="comment-footer-like">
+        <form method="POST" action="/review/{{ $review->id }}/like#review-{{ $review->id }}"  class="comment-footer-like">
           @csrf
           <img src="./images/thumbup-icon.svg" alt="">
           <button>{{ $landing->strings['review_like_btn'] }}</button>

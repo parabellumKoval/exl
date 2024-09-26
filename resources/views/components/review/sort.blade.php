@@ -1,17 +1,23 @@
-<div class="comments-sort">
-  <h5>Sortieren nach</h5>
+@php
+$current_key = Request::input('reviews_sort', 'date_desc');
+$current_value = $sorting_options[$current_key];
 
-  <form method="GET" action="{{ url()->current() }}" id="sortingForm"> 
+@endphp
+
+<div class="comments-sort" id="reviews_sorting">
+  <h5>{{ $landing->strings['review_sort_title'] }}</h5>
+
+  <form method="GET" action="{{ url()->current() . '#reviews_sorting' }}" id="sortingForm"> 
     <input type="hidden" name="reviews_sort">
   </form>
 
   <div class="select" data-item="baseSelect" data-form-id="sortingForm">
-    <div data-item="baseSelectValue">{{ reset($sorting_options) }}</div>
+    <div data-item="baseSelectValue">{{ $current_value }}</div>
     <div class="select-values">
     @foreach($sorting_options as $key => $name)
       <div
         data-value="{{ $key }}"
-        class="value {!! Request::input('reviews_sort', 'date_desc') === $key? "selected": "" !!}"
+        class="value"
         data-item="baseSelectItem"
       >
         {{ $name }}

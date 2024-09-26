@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Review;
 use App\Models\Landing;
@@ -63,9 +64,17 @@ class ReviewController extends Controller
    * @return void
    */
   public function create(Request $request) {
-    $validated = $request->validate([
+    $validator = Validator::make($request->all(), [
+      'author' => 'required|min:1',
       'text' => 'required|min:1',
+      'robot' => 'required'
     ]);
+
+    $id = $request->reply_id ?? 'reviews';
+
+    if($validator->fails()) {
+      return back()->withErrors($validator)->with('review_id', $id);
+    }
 
     $key = $this->landing_key;
     $landing = Landing::where('key', $key)->first();
@@ -83,6 +92,6 @@ class ReviewController extends Controller
 
     $request->session()->push('reviews_author', $review->id);
     
-    return back()->with('review_status', true);
+    return back()->with('review_status', true)->with('review_id', $id);
   }
 }

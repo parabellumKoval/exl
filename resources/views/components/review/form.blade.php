@@ -1,4 +1,47 @@
-<div class="comment-form {{ $replyId? 'comment-answer-form hide': '' }}" data-item="reviewForm" data-form-id="{{ $replyId }}">
+@php
+$hash = $replyId? 'review-' . $replyId: 'review_form';
+$form_id = $replyId? '': 'review_form';
+
+$current_message = session('review_id') == $replyId || (session('review_id') === 'reviews' && !$replyId) ? true: false;
+$is_hide = !$current_message || !$errors->any();
+
+$classes = [];
+
+if($replyId && $is_hide) {
+  $classes[] = 'hide';
+}
+
+if($replyId) {
+  $classes[] = 'comment-answer-form';
+}
+
+$classes_string = implode(' ', $classes);
+@endphp
+
+@if($current_message)
+  @if($errors->any())
+  <div class="alert alert-danger">
+    <div class="alert-title">{{ $landing->strings['review_form_error_title'] }}</div>
+    @if(isset($landing->strings['review_form_error_details']) && $landing->strings['review_form_error_details'] === '1')
+    <ul class="alert-messages">
+        @foreach ($errors->all() as $error)
+          <li class="alert-messages-item">{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
+  </div>
+  @endif
+
+  @if(session('review_status'))
+  <div class="alert alert-success">
+    <div class="alert-title">
+      {{ $landing->strings['review_form_success'] }}
+    </div>
+  </div>
+  @endif
+@endif
+
+<div class="comment-form {{ $classes_string }}" data-item="reviewForm" data-form-id="{{ $replyId }}" id="{{ $form_id }}">
   <div class="comment-form-title">
     <h3>{{ $landing->strings['review_form_title'] }}</h3>
     @if(!$replyId)
@@ -13,7 +56,7 @@
       </div>
     @endif
   </div>
-  <form method="POST" action="/review">
+  <form method="POST" action="/review#{{ $hash }}">
     @csrf
     
     <!-- google recaptcha -->
@@ -34,7 +77,10 @@
         <input name="author" type="text" placeholder="{{ $landing->strings['review_form_name_palceholder'] }}">
 
         <div class="check-robot">
-          <label class="checkbox"><input type="checkbox"><span>{{ $landing->strings['review_form_confirm'] }}</span></label>
+          <label class="checkbox">
+            <input type="checkbox" name="robot">
+            <span>{{ $landing->strings['review_form_confirm'] }}</span>
+          </label>
         </div>
 
         <button type="submit" class="comment-form-btn">{{ $landing->strings['review_form_submit_btn'] }}</button>
