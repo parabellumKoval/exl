@@ -23,8 +23,9 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       <title>{{ $meta_title }}</title>
       <meta name="description" content="{{ $meta_description }}" />
+      @if($meta_keywords != '')
       <meta name="keywords" content="{{ $meta_keywords }}" />
-      
+      @endif
       <link rel="canonical" href="{{ url()->current() }}" />
       <link rel="shortlink" href="{{ url()->current() }}" />
       
