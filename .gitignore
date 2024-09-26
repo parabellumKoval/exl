@@ -11,6 +11,7 @@
 /public/robots.txt
 /storage/*.key
 /vendor
+.user.ini
 .env
 .env.backup
 .phpunit.result.cache
