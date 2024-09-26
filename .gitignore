@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/fonts
+/public/abcl
 /public/storage
 /public/images
 /public/fonts
@@ -10,6 +12,7 @@
 /public/robots.txt
 /storage/*.key
 /vendor
+.user.ini
 .env
 .env.backup
 .phpunit.result.cache
