@@ -11,6 +11,7 @@
           <span class="comment-user-info-date">{{ $review->published_at ?? $review->created_at }}</span>
         </div>
       </div>
+      @if(!$is_reply)
       <div class="comment-vote">
         @foreach(range(1, 5) as $index)
           @if($review->rating >= $index)
@@ -20,6 +21,7 @@
           @endif
         @endforeach
       </div>
+      @endif
     </div>
     <div class="comment-content">
       <p>{!! $review->text !!}</p>
