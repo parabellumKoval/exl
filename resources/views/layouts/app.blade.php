@@ -57,11 +57,6 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
 
       <!-- header stack -->
       @stack('header')
-      
-      @if($page->is_reviews)
-      <!-- GOOGLE RECAPTCHA -->
-      {!! htmlScriptTagJsApi() !!}
-      @endif
   </head>
   <body>
       @if($landing->trueHeader)
@@ -93,6 +88,8 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
       <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
       <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
+      <!-- GOOGLE RECAPTCHA -->
+      {!! htmlScriptTagJsApi() !!}
       @endif
       
       @if($landing->timeoutRedirect)
