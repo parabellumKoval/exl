@@ -84,12 +84,12 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       @endif
 
       @if($page->is_reviews)
-      <!-- Base js -->
-      <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
-      <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
-      <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
-      <!-- GOOGLE RECAPTCHA -->
-      {!! htmlScriptTagJsApi() !!}
+        <!-- Base js -->
+        <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
+        <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
+        <!-- GOOGLE RECAPTCHA -->
+        {!! htmlScriptTagJsApi() !!}
       @endif
       
       @if($landing->timeoutRedirect)

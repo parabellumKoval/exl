@@ -56,12 +56,9 @@ $classes_string = implode(' ', $classes);
       </div>
     @endif
   </div>
-  <form method="POST" action="/review#{{ $hash }}">
+  <form method="POST" action="/review#{{ $hash }}" id="{{ getFormId() }}">
     @csrf
     
-    <!-- google recaptcha -->
-    {!! htmlFormSnippet() !!}
-
     <input name="page_id" type="hidden" value="1">
 
     <!-- hidden field for rating -->
@@ -83,7 +80,7 @@ $classes_string = implode(' ', $classes);
           </label>
         </div>
 
-        <button type="submit" class="comment-form-btn">{{ $landing->strings['review_form_submit_btn'] }}</button>
+        {!! htmlFormButton($landing->strings['review_form_submit_btn'], ['class' => 'comment-form-btn']) !!}
       </div>
 
       <div class="comment-form-right">

@@ -65,6 +65,7 @@ class ReviewController extends Controller
    */
   public function create(Request $request) {
     $validator = Validator::make($request->all(), [
+      'g-recaptcha-response' => 'recaptcha',
       'author' => 'required|min:1',
       'text' => 'required|min:1',
       'robot' => 'required'
