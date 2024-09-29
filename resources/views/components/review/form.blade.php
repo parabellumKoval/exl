@@ -2,6 +2,8 @@
 $hash = $replyId? 'review-' . $replyId: 'review_form';
 $form_id = $replyId? '': 'review_form';
 
+$recf = $replyId? 'recaptch-form-' . $replyId: 'recaptch-form';
+
 $current_message = session('review_id') == $replyId || (session('review_id') === 'reviews' && !$replyId) ? true: false;
 $is_hide = !$current_message || !$errors->any();
 
@@ -56,7 +58,7 @@ $classes_string = implode(' ', $classes);
       </div>
     @endif
   </div>
-  <form method="POST" action="/review#{{ $hash }}" id="{{ getFormId() }}">
+  <form method="POST" action="/review#{{ $hash }}" id="{{ $recf }}">
     @csrf
     
     <input name="page_id" type="hidden" value="1">
@@ -80,7 +82,7 @@ $classes_string = implode(' ', $classes);
           </label>
         </div>
 
-        {!! htmlFormButton($landing->strings['review_form_submit_btn'], ['class' => 'comment-form-btn']) !!}
+        {!! NoCaptcha::displaySubmit($recf, $landing->strings['review_form_submit_btn'], ['class' => 'comment-form-btn']) !!}
       </div>
 
       <div class="comment-form-right">

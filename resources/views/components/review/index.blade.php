@@ -24,3 +24,13 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
   <x-review.form :page-id="$pageId" />
 
 </section>
+
+@push('footer')
+  <!-- Base js -->
+  <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
+  <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
+  <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
+
+  <!-- GOOGLE RECAPTCHA -->
+  {!! NoCaptcha::renderJs() !!}
+@endpush

@@ -59,6 +59,7 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       @stack('header')
   </head>
   <body>
+
       @if($landing->trueHeader)
         <header>
           {!! $landing->trueHeader !!}
@@ -81,15 +82,6 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
         @foreach($landing->allJsLinks as $link)
           <script type="text/javascript" src="{{ $link }}"></script>
         @endforeach
-      @endif
-
-      @if($page->is_reviews)
-        <!-- Base js -->
-        <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
-        <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
-        <!-- GOOGLE RECAPTCHA -->
-        {!! htmlScriptTagJsApi() !!}
       @endif
       
       @if($landing->timeoutRedirect)
