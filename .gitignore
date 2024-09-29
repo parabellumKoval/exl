@@ -20,6 +20,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-robots.txt
+/public/robots.txt
 /.idea
 /.vscode
