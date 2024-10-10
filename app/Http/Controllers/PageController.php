@@ -160,21 +160,30 @@ class PageController extends Controller
     }
 
     if($reviews) {
+        
       if($schema_org) {
-        $schema_org = $schema_org->review();
+        $schema_org = $schema_org->webpage();
       } else {
-        $schema_org = Schema::review();
+        $schema_org = Schema::WebPage();
       }
 
       $schema_org = $schema_org
-        ->mainEntity(array_map(function($review) {
+        ->mainEntity(Schema::game()
+          ->name(config('app.name'))
+        ->review(array_map(function($review) {
             return Schema::review()
-              ->review($review['id'])
-              ->author($review['author'])
-              ->comment($review['text'])
-              ->reviewRating($review['rating']);
+              ->reviewRating(Schema::Rating()
+                ->ratingValue($review['rating']))
+              ->author(Schema::Person()
+                ->name($review['author']))
+              ->datePublished($review['published_at'])
+              ->reviewBody($review['text']);
         }, $reviews['reviews']->toArray()))
-        ->aggregateRating($reviews['total_rating']);
+        ->aggregateRating(Schema::AggregateRating()
+          ->ratingValue($reviews['total_rating'])
+          ->ratingCount($reviews['sum_reviews'])
+        ));
+        
     }
 
     return $schema_org;
