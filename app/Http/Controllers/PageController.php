@@ -173,7 +173,9 @@ class PageController extends Controller
         ->review(array_map(function($review) {
             return Schema::review()
               ->reviewRating(Schema::Rating()
-                ->ratingValue($review['rating']))
+                ->ratingValue($review['rating'])
+                ->bestRating(5)
+                ->worstRating(1))
               ->author(Schema::Person()
                 ->name($review['author']))
               ->datePublished($review['published_at'])
