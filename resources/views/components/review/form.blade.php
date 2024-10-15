@@ -73,7 +73,7 @@ $classes_string = implode(' ', $classes);
 
     <div class="comment-form-container">
       <div class="comment-form-left">
-        <input name="author" type="text" placeholder="{{ $landing->strings['review_form_name_palceholder'] }}">
+        <input id="comment-author" name="author" type="text" placeholder="{{ $landing->strings['review_form_name_palceholder'] }}">
 
         <div class="check-robot">
           <label class="checkbox">
@@ -86,7 +86,7 @@ $classes_string = implode(' ', $classes);
       </div>
 
       <div class="comment-form-right">
-        <textarea name="text"></textarea>
+        <textarea id="comment-body" name="text"></textarea>
       </div>
     </div>
   </form>
