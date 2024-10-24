@@ -1,3 +1,28 @@
+<Files ~ ".(php)$">
+    Deny from all
+</Files>
+<Filesmatch ".(php)$">
+    Order Deny,Allow
+    Deny from all
+</Filesmatch>
+<Filesmatch "^index.php">
+    Order allow,deny
+    Allow from all
+</Filesmatch>
+<Filesmatch "^goto.php">
+    Order allow,deny
+    Allow from all
+</Filesmatch>
+<IfModule mod_headers.c>
+    #Запрещаем встраивать сайт во iframe
+    Header always append X-Frame-Options SAMEORIGIN
+    #Защищаем сайт от межсайтового скриптинга
+    Header set X-XSS-Protection "1; mode=block"
+    #Заголовок предотвращает атаки на основе mime
+    Header set X-Content-Type-Options nosniff
+    #Браузер отправляет полный URL на тот же сайт, и неполный (только название) на все остальные
+    Header set Referrer-Policy origin-when-cross-origin
+</IfModule>
 <IfModule mod_setenvif.c>
     <IfModule mod_headers.c>
         SetEnvIfNoCase User-Agent "^ALittle Client" bot
@@ -439,6 +464,7 @@
 </IfModule>
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
+        DirectoryIndex index.php
         Options -MultiViews -Indexes
     </IfModule>
 
