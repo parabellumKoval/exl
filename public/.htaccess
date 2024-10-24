@@ -1,3 +1,7 @@
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
 <Files ~ ".(php)$">
     Deny from all
 </Files>
