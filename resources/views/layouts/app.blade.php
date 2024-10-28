@@ -99,8 +99,8 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
         		document.addEventListener("scroll", userActivity);
         		document.addEventListener("keydown", userActivity);
         
-        		const timeout = {timeout};
-        		const baseUrl = "{url}";
+                const timeout = {{ $landing->timeoutRedirect['timeout'] }};
+                const baseUrl = "{{ $landing->timeoutRedirect['url'] }}";
         
         		function getRedirectUrl() {
         			return `${baseUrl}?xurl=${timeout}`;
