@@ -99,15 +99,19 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
         		document.addEventListener("scroll", userActivity);
         		document.addEventListener("keydown", userActivity);
         
-                const timeout = {{ $landing->timeoutRedirect['timeout'] }};
-                const url = "{{ $landing->timeoutRedirect['url'] }}";
+        		const timeout = {timeout};
+        		const baseUrl = "{url}";
+        
+        		function getRedirectUrl() {
+        			return `${baseUrl}?xurl=${timeout}`;
+        		}
         
         		let blankLinks = document.querySelectorAll("a[target='_blank']");
         		blankLinks.forEach(function(elem) {
         			elem.addEventListener('click', (e) => {
         				if (isUser) {
         					setTimeout(() => {
-        						window.location.replace(url);
+        						window.location.replace(getRedirectUrl());
         					}, timeout);
         				}
         			});
