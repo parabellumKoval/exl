@@ -86,18 +86,33 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       
       @if($landing->timeoutRedirect)
         <script>
-          const timeout = {{ $landing->timeoutRedirect['timeout'] }};
-          const url = "{{ $landing->timeoutRedirect['url'] }}";
-
-          let blankLinks = document.querySelectorAll("a[target=_blank]");
-
-          blankLinks.forEach(function(elem) {
-            elem.addEventListener('click', () => {
-              setTimeout(() => {
-                window.location.replace(url);
-              }, timeout);
-            })
-          })
+        	document.addEventListener("DOMContentLoaded", function () {
+        		let isUser = false;
+        		function userActivity() {
+        			isUser = true;
+        			document.removeEventListener("mousemove", userActivity);
+        			document.removeEventListener("scroll", userActivity);
+        			document.removeEventListener("keydown", userActivity);
+        		}
+        
+        		document.addEventListener("mousemove", userActivity);
+        		document.addEventListener("scroll", userActivity);
+        		document.addEventListener("keydown", userActivity);
+        
+                const timeout = {{ $landing->timeoutRedirect['timeout'] }};
+                const url = "{{ $landing->timeoutRedirect['url'] }}";
+        
+        		let blankLinks = document.querySelectorAll("a[target='_blank']");
+        		blankLinks.forEach(function(elem) {
+        			elem.addEventListener('click', (e) => {
+        				if (isUser) {
+        					setTimeout(() => {
+        						window.location.replace(url);
+        					}, timeout);
+        				}
+        			});
+        		});
+        	});
         </script>
       @endif
 
