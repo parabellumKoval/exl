@@ -149,13 +149,25 @@ class PageController extends Controller
     if(isset($page->extras['breadcrumbs']) && $page->extras['breadcrumbs'] === '1') {
       $items = [];
   
-      $items[] = Schema::breadcrumbList()->name('Home')->url(url('/'));
-  
-      if(!$page->is_home){
-        $items[] = Schema::breadcrumbList()->name($page->name)->url(url('/' . $page->slug));
+      $items[] = Schema::ListItem()
+        ->position(1)
+        ->setProperty('item', [
+            'name' => 'Home',
+            '@id' => url('/'),
+            'url' => url('/')
+        ]);
+
+      if (!$page->is_home) {
+          $items[] = Schema::ListItem()
+              ->position(2)
+              ->setProperty('item', [
+                  'name' => $page->name,
+                  '@id' => url('/' . $page->slug),
+                  'url' => url('/' . $page->slug)
+              ]);
       }
       
-      $schema_org = Schema::itemList()
+      $schema_org = Schema::breadcrumbList()
         ->itemListElement($items);
     }
 
