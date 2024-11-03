@@ -3,10 +3,10 @@
 $meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
 $meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
 $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
-
+$lang = $locale ?? $landing->seo['locale'];
 @endphp
 <!DOCTYPE html>
-<html lang="{{ $landing->seo['locale'] }}">
+<html lang="{{ $lang }}">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +14,9 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       <meta property="og:title" content="{{ $meta_title }}" />
       <meta property="og:site_name" content="{{ $landing->seo['site_name'] }}" />
       <meta property="og:description" content="{{ $meta_description }}" />
-      <meta property="og:locale" content="{{ $landing->seo['locale'] }}" />
+      <meta property="og:locale" content="{{ $lang }}" />
       <meta property="og:type" content="website" />
-      <meta property="og:url"   content="{{ url()->current() }}" />
+      <meta property="og:url" content="{{ url()->current() }}" />
       <meta property="og:image" content="{{ url('/images/logo.png') }}" />
       <meta property="og:image:secure_url" content="{{ url('/images/logo.png') }}" />
       <meta property="og:image:type" content="image/png" />
@@ -28,7 +28,19 @@ $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords
       @endif
       <link rel="canonical" href="{{ url()->current() }}" />
       <link rel="shortlink" href="{{ url()->current() }}" />
+
+      <!-- HREFLANGS -->
+      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $locale }}" />
+      @if($page->children)
+        @foreach($page->children as $children_page)
+          <link rel="alternate" href="{{ url($children_page->slug) }}" hreflang="{{ $children_page->seo['locale'] ?? null }}" />
+        @endforeach
+      @endif
+      @if($page->parent)
+        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="{{ $page->parent->seo['locale'] ?? null }}" />
+      @endif
       
+      <!-- ROBOTS -->
       @if(isset($in_index) && !$in_index)
         <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
       @else

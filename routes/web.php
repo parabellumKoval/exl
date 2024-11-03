@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Page;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::group([
   'namespace'  => 'App\Http\Controllers',
 ], function () {
-  Route::get('/', 'PageController@index')->name('home');
+  //
+  $home_page = Page::where('is_home', 1)->first();
+  if(!empty($home_page->slug) || $home_page->slug !== '/') {
+    Route::redirect('/', '/' . $home_page->slug, 302);
+    Route::get('/' . $home_page->slug, 'PageController@index')->name('home');
+  }else {
+    Route::get('/', 'PageController@index')->name('home');
+  }
+
+  // 
   Route::get('/{slug}', 'PageController@page')->name('page');
-  // Route::get('/', 'PageController@closed')->name('closed');
 
   Route::post('/review', 'ReviewController@create');
   Route::post('/review/{id}/like', 'ReviewController@like');

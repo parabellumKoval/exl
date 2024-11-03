@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-        <loc>http://localhost</loc>
-        <lastmod>2024-09-11T19:03:50+00:00</lastmod>
+        <loc>http://localhost/glavnaya</loc>
+        <xhtml:link rel="alternate" hreflang="uk_UA" href="http://localhost/glavnaya-alt" />
+        <lastmod>2024-09-26T20:05:44+00:00</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.1</priority>
+        <priority>0.9</priority>
+            </url>
+    <url>
+        <loc>http://localhost/konkursy</loc>
+        <lastmod>2024-09-02T14:06:43+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+            </url>
+    <url>
+        <loc>http://localhost/glavnaya-alt</loc>
+        <xhtml:link rel="alternate" hreflang="ru_RU" href="http://localhost/glavnaya" />
+        <lastmod>2024-09-03T11:01:49+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+            </url>
+    <url>
+        <loc>http://localhost/kk</loc>
+        <xhtml:link rel="alternate" hreflang="uk_UA" href="http://localhost/konkursy" />
+        <lastmod>2024-11-03T19:47:23+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
             </url>
 </urlset>

@@ -2,7 +2,8 @@
   'in_index' => $page->in_index,
   'meta_title' => $page->seo['meta_title'] ?? null,
   'meta_description' => $page->seo['meta_description'] ?? null,
-  'meta_keywords' => $page->seo['meta_keywords'] ?? null
+  'meta_keywords' => $page->seo['meta_keywords'] ?? null,
+  'locale' => $page->seo['locale'] ?? null
 ])
 
 @section('content')
