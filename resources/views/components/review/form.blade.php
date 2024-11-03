@@ -61,7 +61,7 @@ $classes_string = implode(' ', $classes);
   <form method="POST" action="/review#{{ $hash }}" id="{{ $recf }}">
     @csrf
     
-    <input name="page_id" type="hidden" value="1">
+    <input name="page_id" type="hidden" value="{{ $pageId }}">
 
     <!-- hidden field for rating -->
     <input name="rating" type="hidden" data-item="hiddenRating">
