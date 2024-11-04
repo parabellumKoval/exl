@@ -105,7 +105,21 @@ class Page extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    
+        
+    /**
+     * getLocaleAnywayAttribute
+     *
+     * @return void
+     */
+    public function getLocaleAnywayAttribute(){
+      return !empty($this->seo['locale'])? $this->seo['locale']: ($this->landing->seo['locale'] ?? null);
+    }
+
+    /**
+     * getTrueContentAttribute
+     *
+     * @return void
+     */
     public function getTrueContentAttribute() {
       $content = json_decode($this->content);
 
@@ -124,6 +138,27 @@ class Page extends Model
       }
       
       return $content;
+    }
+
+    
+    /**
+     * getRelatedPagesAttribute
+     *
+     * @return void
+     */
+    public function getRelatedPagesAttribute() {
+      $pages = collect();
+      
+      if($this->parent) {
+        $pages = $pages->push($this->parent);
+        $pages = $pages->merge($this->parent->relatedPages);
+      }
+
+      if($this->children) {
+        $pages = $pages->merge($this->children);
+      }
+
+      return $pages->where('id', '!=', $this->id)->all();
     }
 
     /*

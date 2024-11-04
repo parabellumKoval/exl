@@ -1,9 +1,10 @@
 @php
-
 $meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
 $meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
 $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
-$lang = $locale ?? $landing->seo['locale'];
+
+$landing_lang = $landing->seo['locale'];
+$lang = $locale ?? $landing_lang;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $lang }}">
@@ -29,16 +30,18 @@ $lang = $locale ?? $landing->seo['locale'];
       <link rel="canonical" href="{{ url()->current() }}" />
 
       <!-- HREFLANGS -->
-      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $locale }}" />
-      @if($page->children)
-        @foreach($page->children as $children_page)
-          <link rel="alternate" href="{{ url($children_page->slug) }}" hreflang="{{ $children_page->seo['locale'] ?? null }}" />
+      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}" />
+      
+      @if($page->relatedPages)
+        @foreach($page->relatedPages as $rel_page)
+        <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $rel_page->localeAnyway }}" />
         @endforeach
       @endif
+
       @if($page->parent)
-        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="{{ $page->parent->seo['locale'] ?? null }}" />
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
       @endif
+
       @if($page->is_home)
         <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default" />
       @endif
