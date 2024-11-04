@@ -27,7 +27,6 @@ $lang = $locale ?? $landing->seo['locale'];
       <meta name="keywords" content="{{ $meta_keywords }}" />
       @endif
       <link rel="canonical" href="{{ url()->current() }}" />
-      <link rel="shortlink" href="{{ url()->current() }}" />
 
       <!-- HREFLANGS -->
       <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $locale }}" />
