@@ -20,8 +20,12 @@ Route::group([
   'namespace'  => 'App\Http\Controllers',
 ], function () {
   //
-  $home_page = Page::where('is_home', 1)->first();
-  if(!empty($home_page->slug) || $home_page->slug !== '/') {
+  $landing_key = config('app.name');
+  $home_page = Page::whereHas('landing', function($query) use ($landing_key) {
+    $query->where('key', $landing_key);
+  })->where('is_home', 1)->first();
+
+  if($home_page && !empty($home_page->slug) || $home_page->slug !== '/') {
     Route::redirect('/', '/' . $home_page->slug, 302);
     Route::get('/' . $home_page->slug, 'PageController@index')->name('home');
   }else {
