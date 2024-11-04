@@ -9,6 +9,7 @@
 /public/css
 /public/favicon.ico
 /public/robots.txt
+/public/sitemap.xml
 /storage/*.key
 /vendor
 .user.ini
