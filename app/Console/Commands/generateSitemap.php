@@ -44,10 +44,16 @@ class generateSitemap extends Command
      */
     public function handle()
     {
+      $landing_key = config('app.name');
       $url = 'public/sitemap.xml';
 
-      $main_page = Page::where('is_active', 1)->where('in_index', 1)->where('is_home', 1)->first();
-      $pages = Page::where('is_active', 1)->where('in_index', 1)->where('is_home', 0)->get();
+      $main_page = Page::whereHas('landing', function($query) use ($landing_key) {
+        $query->where('key', $landing_key);
+      })->where('is_active', 1)->where('in_index', 1)->where('is_home', 1)->first();
+
+      $pages = Page::whereHas('landing', function($query) use ($landing_key) {
+        $query->where('key', $landing_key);
+      })->where('is_active', 1)->where('in_index', 1)->where('is_home', 0)->get();
 
       $last_review = Review::where('is_moderated', 1)->orderBy('id', 'desc')->first();
       $last_mod = $last_review->published_at ?? $last_review->created_at ?? Carbon::yesterday();
