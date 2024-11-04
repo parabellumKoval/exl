@@ -29,7 +29,6 @@ $lang = $locale ?? $landing->seo['locale'];
       <link rel="canonical" href="{{ url()->current() }}" />
 
       <!-- HREFLANGS -->
-      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $locale }}" />
       @if($page->children)
         @foreach($page->children as $children_page)
           <link rel="alternate" href="{{ url($children_page->slug) }}" hreflang="{{ $children_page->seo['locale'] ?? null }}" />
