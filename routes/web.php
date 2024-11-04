@@ -26,10 +26,12 @@ Route::group([
   })->where('is_home', 1)->first();
 
   if($home_page) {
-    if(!empty($home_page->slug) || $home_page->slug !== '/') {
+    if(!empty($home_page->slug) && $home_page->slug !== '/') {
+      print('home 1 - ' . $home_page->slug);
       Route::redirect('/', '/' . $home_page->slug, 302);
       Route::get('/' . $home_page->slug, 'PageController@index')->name('home');
     }else {
+      print('home 2 - ' . $home_page->slug);
       Route::get('/', 'PageController@index')->name('home');
     }
   }
