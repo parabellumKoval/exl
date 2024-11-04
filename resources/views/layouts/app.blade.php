@@ -37,6 +37,7 @@ $lang = $locale ?? $landing->seo['locale'];
       @endif
       @if($page->parent)
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="{{ $page->parent->seo['locale'] ?? null }}" />
+        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
       @endif
       
       <!-- ROBOTS -->
