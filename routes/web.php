@@ -25,11 +25,13 @@ Route::group([
     $query->where('key', $landing_key);
   })->where('is_home', 1)->first();
 
-  if($home_page && !empty($home_page->slug) || $home_page->slug !== '/') {
-    Route::redirect('/', '/' . $home_page->slug, 302);
-    Route::get('/' . $home_page->slug, 'PageController@index')->name('home');
-  }else {
-    Route::get('/', 'PageController@index')->name('home');
+  if($home_page) {
+    if(!empty($home_page->slug) || $home_page->slug !== '/') {
+      Route::redirect('/', '/' . $home_page->slug, 302);
+      Route::get('/' . $home_page->slug, 'PageController@index')->name('home');
+    }else {
+      Route::get('/', 'PageController@index')->name('home');
+    }
   }
 
   // 
