@@ -183,7 +183,10 @@ class Landing extends Model
      */
     public function getAllCssLinksAttribute() {
       $all_files = Storage::disk($this->key)->allFiles('css');
-      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files);
+      $all_files_filtered = $this->filterFilesByExtension($all_files, 'css');
+
+      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files_filtered);
+
       return $pathes;
     }
     
@@ -194,10 +197,34 @@ class Landing extends Model
      */
     public function getAllJsLinksAttribute() {
       $all_files = Storage::disk($this->key)->allFiles('js');
-      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files);
+      $all_files_filtered = $this->filterFilesByExtension($all_files, 'js');
+
+      $pathes = array_map(fn($item) => Storage::disk($this->key)->url($item), $all_files_filtered);
       return $pathes;
     }
-    
+        
+    /**
+     * filterFilesByExtension
+     *
+     * @param  mixed $files
+     * @param  mixed $ext
+     * @return void
+     */
+    public function filterFilesByExtension($files, $ext) {
+
+      $data = [];
+
+      foreach($files as $path) {
+        $extension = \File::extension($path);
+
+        if($extension === $ext){
+          $data[] = $path;
+        }
+      }
+
+      return $data;
+    }
+
     /**
      * getPublicJsLinkAttribute
      *
