@@ -13,6 +13,7 @@ class Items extends Component
 {
     public $reviews;
     public $is_reply;
+    public $strings = null;
     
     public $user_likes = [];
 
@@ -21,10 +22,11 @@ class Items extends Component
      *
      * @return void
      */
-    public function __construct($reviews = null, $isReply = false)
+    public function __construct($reviews = null, $isReply = false, $strings = null)
     { 
       $this->is_reply = $isReply;
       $this->reviews = $reviews;
+      $this->strings = $strings;
 
       $this->user_likes = session('reviews_liked');
     }

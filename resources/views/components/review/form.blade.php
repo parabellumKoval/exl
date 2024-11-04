@@ -18,13 +18,14 @@ if($replyId) {
 }
 
 $classes_string = implode(' ', $classes);
+
 @endphp
 
 @if($current_message)
   @if($errors->any())
   <div class="alert alert-danger">
-    <div class="alert-title">{{ $landing->strings['review_form_error_title'] }}</div>
-    @if(isset($landing->strings['review_form_error_details']) && $landing->strings['review_form_error_details'] === '1')
+    <div class="alert-title">{{ $strings['review_form_error_title'] }}</div>
+    @if(isset($strings['review_form_error_details']) && $strings['review_form_error_details'] === '1')
     <ul class="alert-messages">
         @foreach ($errors->all() as $error)
           <li class="alert-messages-item">{{ $error }}</li>
@@ -37,7 +38,7 @@ $classes_string = implode(' ', $classes);
   @if(session('review_status'))
   <div class="alert alert-success">
     <div class="alert-title">
-      {{ $landing->strings['review_form_success'] }}
+      {{ $strings['review_form_success'] }}
     </div>
   </div>
   @endif
@@ -45,7 +46,7 @@ $classes_string = implode(' ', $classes);
 
 <div class="comment-form {{ $classes_string }}" data-item="reviewForm" data-form-id="{{ $replyId }}" id="{{ $form_id }}">
   <div class="comment-form-title">
-    <h3>{{ $landing->strings['review_form_title'] }}</h3>
+    <h3>{{ $strings['review_form_title'] }}</h3>
     @if(!$replyId)
       <div class="comment-form-stars rating">
         <span class="stars-container" data-item="formStars">
@@ -73,16 +74,16 @@ $classes_string = implode(' ', $classes);
 
     <div class="comment-form-container">
       <div class="comment-form-left">
-        <input id="comment-author" name="author" type="text" placeholder="{{ $landing->strings['review_form_name_palceholder'] }}">
+        <input id="comment-author" name="author" type="text" placeholder="{{ $strings['review_form_name_palceholder'] }}">
 
         <div class="check-robot">
           <label class="checkbox">
             <input type="checkbox" name="robot">
-            <span>{{ $landing->strings['review_form_confirm'] }}</span>
+            <span>{{ $strings['review_form_confirm'] }}</span>
           </label>
         </div>
 
-        {!! NoCaptcha::displaySubmit($recf, $landing->strings['review_form_submit_btn'], ['class' => 'comment-form-btn']) !!}
+        {!! NoCaptcha::displaySubmit($recf, $strings['review_form_submit_btn'], ['class' => 'comment-form-btn']) !!}
       </div>
 
       <div class="comment-form-right">

@@ -10,6 +10,7 @@ class Index extends Component
     public $sum_reviews;
     public $sum_rating;
     public $pageId = null;
+    public $strings = null;
     public $reviews;
 
     /**
@@ -17,13 +18,14 @@ class Index extends Component
      *
      * @return void
      */
-    public function __construct($sumReviews = 0, $totalRating = 0, $sumRating = 0, $reviews = null, $pageId = null)
+    public function __construct($sumReviews = 0, $totalRating = 0, $sumRating = 0, $reviews = null, $pageId = null, $strings = null)
     { 
       $this->sum_reviews = $sumReviews;
       $this->sum_rating = $sumRating;
       $this->total_rating = $totalRating;
 
       $this->pageId = $pageId;
+      $this->strings = $strings;
       $this->reviews = $reviews;
     }
 

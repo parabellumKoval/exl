@@ -34,7 +34,7 @@
             <div class="comment-likes">{{ $review->likes }}</div>
           @endif
           <img src="./images/thumbup-icon.svg" alt="">
-          <button>{{ $landing->strings['review_like_btn'] }}</button>
+          <button>{{ $strings['review_like_btn'] }}</button>
         </form>
       @else
         <form method="POST" action="/review/{{ $review->id }}/like#review-{{ $review->id }}"  class="comment-footer-like">
@@ -43,21 +43,21 @@
             <div class="comment-likes">{{ $review->likes }}</div>
           @endif
           <img src="./images/thumbup-icon.svg" alt="">
-          <button>{{ $landing->strings['review_like_btn'] }}</button>
+          <button>{{ $strings['review_like_btn'] }}</button>
         </form>
       @endif
 
       @if(!$is_reply)
         <div class="comment-footer-answer">
           <img src="./images/comment-icon.svg" alt="">
-          <button id="comment-btn-{{ $review->id }}" data-action="openReply">{{ $landing->strings['review_reply_btn'] }}</button>
+          <button id="comment-btn-{{ $review->id }}" data-action="openReply">{{ $strings['review_reply_btn'] }}</button>
         </div>
       @endif
     </div>
   </article>
 
   @if(!$review->parent_id)
-    <x-review.form :reply-id="$review->id"/>
+    <x-review.form :reply-id="$review->id" :strings="$strings"/>
   @endif
 
   @php
@@ -66,7 +66,7 @@
 
   @if($answers && $answers->count())
     <ul class="children">
-      <x-review.items :reviews="$answers" :is-reply="true" />
+      <x-review.items :reviews="$answers" :is-reply="true" :strings="$strings" />
     </ul>
   @endif
 </li>

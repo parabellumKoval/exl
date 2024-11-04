@@ -12,6 +12,7 @@ use App\Models\Review;
 class Sort extends Component
 {
     public $sorting_options = [];
+    public $strings = null;
 
 
     /**
@@ -19,7 +20,7 @@ class Sort extends Component
      *
      * @return void
      */
-    public function __construct($landing = null)
+    public function __construct($landing = null, $strings = null)
     { 
       if($landing) {
         $this->sorting_options = [
@@ -29,6 +30,7 @@ class Sort extends Component
           "usefull_asc" => $landing->strings['review_sort_usefull_asc']
         ];
       }
+      $this->strings = $strings;
     }
 
     /**

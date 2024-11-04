@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 // MODEL
 use App\Models\Landing;
+use App\Models\Translation;
 
 class Page extends Model
 {
@@ -33,6 +34,26 @@ class Page extends Model
 
     protected $fakeColumns = ['extras'];
     
+    public $empty_strings = [
+        "review_like_btn" => "", 
+        "review_reply_btn" => "", 
+        "review_form_title" => "", 
+        "review_sort_title" => "", 
+        "review_block_title" => "", 
+        "review_block_desc_1" => "", 
+        "review_block_desc_2" => "", 
+        "review_form_confirm" => "", 
+        "review_form_success" => "", 
+        "review_sort_date_asc" => "", 
+        "review_sort_date_desc" => "", 
+        "review_block_more_hide" => "", 
+        "review_block_more_show" => "", 
+        "review_form_submit_btn" => "", 
+        "review_form_error_title" => "", 
+        "review_sort_usefull_asc" => "", 
+        "review_sort_usefull_desc" => "", 
+        "review_form_name_palceholder" => ""
+    ];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -105,7 +126,39 @@ class Page extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-        
+
+    
+    public function getStringsAttribute() {
+      $landing_key = config('app.name');
+
+      if(!$this->localeAnyway) {
+        return $this->empty_strings;
+      }
+
+      $translations = Translation::where(function($query) use ($landing_key){
+        $query->whereHas('landing', function($query) use ($landing_key) {
+          $query->where('key', $landing_key);
+        })->orWhere('landing_id', null);
+      })->where('locale', $this->localeAnyway)->get();
+
+      
+      $common_trans = $translations->where('landing_id', null)->first();
+      $specific_trans = $common_trans? $translations->where('id', '!=', $common_trans->id)->first(): null;
+
+      if($common_trans && $specific_trans) {
+        $specific_strings = array_filter($specific_trans->strings);
+        $strings = array_merge($common_trans->strings, $specific_strings);
+      }else if($common_trans) {
+        $strings = $common_trans->strings;
+      }else if($specific_trans) {
+        $strings = $specific_trans->strings;
+      }else {
+        $strings = $this->empty_strings;
+      }
+
+      return $strings;
+    }
+
     /**
      * getLocaleAnywayAttribute
      *

@@ -5,7 +5,7 @@ $current_value = $sorting_options[$current_key];
 @endphp
 
 <div class="comments-sort" id="reviews_sorting">
-  <h5>{{ $landing->strings['review_sort_title'] }}</h5>
+  <h5>{{ $strings['review_sort_title'] }}</h5>
 
   <form method="GET" action="{{ url()->current() . '#reviews_sorting' }}" id="sortingForm"> 
     <input type="hidden" name="reviews_sort">

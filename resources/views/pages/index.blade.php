@@ -10,7 +10,7 @@
   {!! $page->trueContent !!}
 
   @if($page->is_reviews)
-    <x-review.index :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating" :reviews="$reviews" :page-id="$page->id" />
+    <x-review.index :total-rating="$total_rating" :sum-reviews="$sum_reviews" :sum-rating="$sum_rating" :reviews="$reviews" :page-id="$page->id" :strings="$page->strings" />
   @endif
 @endsection
 
