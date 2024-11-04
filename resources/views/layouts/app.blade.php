@@ -38,7 +38,7 @@ $lang = $locale ?? $landing->seo['locale'];
       @if($page->parent)
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="{{ $page->parent->seo['locale'] ?? null }}" />
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
-      @elseif(!$page->parent && !$page->children)
+      @elseif($page->index)
         <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default" />
       @endif
       
