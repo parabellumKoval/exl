@@ -70,9 +70,6 @@ class generateSitemap extends Command
         $sitemap = $this->addPage($page, $sitemap, $page->created_at, '0.6');
       }
 
-
-      $sitemap = $this->addXDefault($main_page, $sitemap, $last_mod);
-
       $sitemap = $sitemap->writeToFile($url);
     }
 
