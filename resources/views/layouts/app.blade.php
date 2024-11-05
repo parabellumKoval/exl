@@ -10,7 +10,7 @@ $lang = $locale ?? $landing_lang;
 <html lang="{{ $lang }}">
   <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
       <meta property="og:title" content="{{ $meta_title }}" />
       <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }}" />
@@ -36,7 +36,6 @@ $lang = $locale ?? $landing_lang;
         @foreach($page->relatedPages as $rel_page)
         <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $rel_page->localeAnyway }}" />
         @endforeach
-        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
       @endif
 
       @if($page->parent)
