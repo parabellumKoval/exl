@@ -97,7 +97,13 @@ class generateSitemap extends Command
         }
       }
 
-      $home_item = $home_item->addAlternate($page->slug, 'x-default');
+      if($page->parent) {
+        $xDefaultSlug = $page->parent->slug;
+      }else {
+        $xDefaultSlug = $page->slug;
+      }
+
+      $home_item = $home_item->addAlternate($xDefaultSlug, 'x-default');
 
       $sitemap = $sitemap->add($home_item);
       return $sitemap;
