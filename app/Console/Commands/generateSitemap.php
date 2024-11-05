@@ -91,8 +91,8 @@ class generateSitemap extends Command
            
       if($page->relatedPages) {
         foreach($page->relatedPages as $rel_page) {
-          if(isset($rel_page->seo['locale']) && !empty($rel_page->seo['locale'])) {
-            $home_item = $home_item->addAlternate($rel_page->slug, $rel_page->seo['locale']);
+          if($rel_page->localeAnyway) {
+            $home_item = $home_item->addAlternate($rel_page->slug, $rel_page->localeAnyway);
           }
         }
       }
