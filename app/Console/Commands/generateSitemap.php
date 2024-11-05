@@ -70,6 +70,9 @@ class generateSitemap extends Command
         $sitemap = $this->addPage($page, $sitemap, $page->created_at, '0.6');
       }
 
+
+      $sitemap = $this->addXDefault($main_page, $sitemap, $last_mod);
+
       $sitemap = $sitemap->writeToFile($url);
     }
 
@@ -83,7 +86,7 @@ class generateSitemap extends Command
      * @param  mixed $priority
      * @return void
      */
-    private function addPage($page, $sitemap, $last_mod, $priority) {
+    private function addPage($page, $sitemap, $last_mod, $priority, $lang = null) {
       $home_item = Url::create($page->slug)
               ->setLastModificationDate($last_mod)
               ->setPriority($priority)
@@ -96,6 +99,8 @@ class generateSitemap extends Command
           }
         }
       }
+
+      $home_item = $home_item->addAlternate($page->slug, 'x-default');
 
       $sitemap = $sitemap->add($home_item);
       return $sitemap;
