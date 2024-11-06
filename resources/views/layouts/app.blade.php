@@ -10,7 +10,7 @@ $lang = $locale ?? $landing_lang;
 <html lang="{{ $lang }}">
   <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
       <meta property="og:title" content="{{ $meta_title }}" />
       <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }}" />
