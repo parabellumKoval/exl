@@ -12,9 +12,9 @@ $lang = $locale ?? $landing_lang;
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-      <meta property="og:title" content="{{ $meta_title }}" />
-      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }}" />
-      <meta property="og:description" content="{{ $meta_description }}" />
+      <meta property="og:title" content="{{ $meta_title }} — {{ now()->year }}" />
+      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }} — {{ now()->year }}" />
+      <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}" />
       <meta property="og:locale" content="{{ $lang }}" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="{{ url()->current() }}" />
@@ -22,8 +22,8 @@ $lang = $locale ?? $landing_lang;
       <meta property="og:image:secure_url" content="{{ url('/images/logo.png') }}" />
       <meta property="og:image:type" content="image/png" />
 
-      <title>{{ $meta_title }}</title>
-      <meta name="description" content="{{ $meta_description }}" />
+      <title>{{ $meta_title }} — {{ now()->year }}</title>
+      <meta name="description" content="{{ $meta_description }} — {{ now()->year }}" />
       @if($meta_keywords != '')
       <meta name="keywords" content="{{ $meta_keywords }}" />
       @endif
