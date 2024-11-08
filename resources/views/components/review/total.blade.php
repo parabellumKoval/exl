@@ -6,9 +6,9 @@
   <div class="comments-stars">
     @foreach(range(1, 5) as $index)
       @if($total_rating >= $index)
-        <img src="./images/full-star.svg" alt="">
+        <img src="./images/full-star.svg" alt="full-star-{{ $sum_reviews }}">
       @else
-      <img src="./images/empty-star.svg" alt="">
+      <img src="./images/empty-star.svg" alt="empty-star-{{ $sum_reviews }}">
       @endif
     @endforeach
   </div>
