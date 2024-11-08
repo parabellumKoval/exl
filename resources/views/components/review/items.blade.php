@@ -7,7 +7,7 @@
           <img src="images/user-icon.svg" alt="user-icon-{{ $review->author }}">
         </div>
         <div class="comment-user-info">
-          <h6>{{ $review->author }}</h6>
+          <span>{{ $review->author }}</span>
           <span class="comment-user-info-date">{{ $review->published_at ?? $review->created_at }}</span>
         </div>
       </div>
