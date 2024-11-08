@@ -4,7 +4,7 @@
     <div class="comment-header">
       <div class="comment-user">
         <div class="comment-user-image">
-          <img src="images/user-icon.svg" alt="">
+          <img src="images/user-icon.svg" alt="user-icon-{{ $review->author }}">
         </div>
         <div class="comment-user-info">
           <h6>{{ $review->author }}</h6>
@@ -15,9 +15,9 @@
       <div class="comment-vote">
         @foreach(range(1, 5) as $index)
           @if($review->rating >= $index)
-            <img src="./images/full-star.svg" alt="">
+            <img src="./images/full-star.svg" alt="full-star-{{ $review->id }}">
           @else
-          <img src="./images/empty-star.svg" alt="">
+          <img src="./images/empty-star.svg" alt="empty-star-{{ $review->id }}">
           @endif
         @endforeach
       </div>
@@ -33,7 +33,7 @@
           @if($review->likes > 0)
             <div class="comment-likes">{{ $review->likes }}</div>
           @endif
-          <img src="./images/thumbup-icon.svg" alt="">
+          <img src="./images/thumbup-icon.svg" alt="thumbup-icon-{{ $review->id }}">
           <button>{{ $strings['review_like_btn'] }}</button>
         </form>
       @else
@@ -42,14 +42,14 @@
           @if($review->likes > 0)
             <div class="comment-likes">{{ $review->likes }}</div>
           @endif
-          <img src="./images/thumbup-icon.svg" alt="">
+          <img src="./images/thumbup-icon.svg" alt="thumbup-icon-{{ $review->id }}">
           <button>{{ $strings['review_like_btn'] }}</button>
         </form>
       @endif
 
       @if(!$is_reply)
         <div class="comment-footer-answer">
-          <img src="./images/comment-icon.svg" alt="">
+          <img src="./images/comment-icon.svg" alt="comment-icon-{{ $review->id }}">
           <button id="comment-btn-{{ $review->id }}" data-action="openReply">{{ $strings['review_reply_btn'] }}</button>
         </div>
       @endif
