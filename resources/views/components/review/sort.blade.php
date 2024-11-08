@@ -1,7 +1,6 @@
 @php
 $current_key = Request::input('reviews_sort', 'date_desc');
 $current_value = $sorting_options[$current_key];
-
 @endphp
 
 <div class="comments-sort" id="reviews_sorting">

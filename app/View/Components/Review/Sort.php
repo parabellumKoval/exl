@@ -22,15 +22,14 @@ class Sort extends Component
      */
     public function __construct($landing = null, $strings = null)
     { 
-      if($landing) {
-        $this->sorting_options = [
-          "date_desc" => $landing->strings['review_sort_date_desc'],
-          "date_asc" => $landing->strings['review_sort_date_asc'],
-          "usefull_desc" => $landing->strings['review_sort_usefull_desc'],
-          "usefull_asc" => $landing->strings['review_sort_usefull_asc']
-        ];
-      }
       $this->strings = $strings;
+
+      $this->sorting_options = [
+        "date_desc" => $strings['review_sort_date_desc'],
+        "date_asc" => $strings['review_sort_date_asc'],
+        "usefull_desc" => $strings['review_sort_usefull_desc'],
+        "usefull_asc" => $strings['review_sort_usefull_asc']
+      ];
     }
 
     /**
