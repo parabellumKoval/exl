@@ -183,7 +183,7 @@ if ($reviews) {
     // Основной объект WebPage с информацией о главном объекте — Product
     $schema_org = $schema_org
         ->mainEntity(Schema::Product()
-            ->name(config('app.name'))
+            ->name(url('/' . $page->slug))
             ->review(array_map(function ($review) {
                 return Schema::Review()
                     ->reviewRating(Schema::Rating()
