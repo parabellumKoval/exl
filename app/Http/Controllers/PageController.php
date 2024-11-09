@@ -180,7 +180,7 @@ if ($reviews) {
         $schema_org = Schema::WebPage();
     }
 
-    if (url('/' . $page->slug) != '/') {
+    if ($page->slug != '/') {
         $purl = url('/' . $page->slug);
     } else {
         $purl = url('/');
