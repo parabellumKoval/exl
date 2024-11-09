@@ -180,11 +180,18 @@ if ($reviews) {
         $schema_org = Schema::WebPage();
     }
 
+    if (url('/' . $page->slug) != '/') {
+        $purl = url('/' . $page->slug);
+    } else {
+        $purl = url('/');
+    }
+    
     // Основной объект WebPage с информацией о главном объекте — Product
     $schema_org = $schema_org
         ->mainEntity(Schema::Product()
             ->name($page->seo['meta_title'])
             ->description($page->seo['meta_description'])
+            ->url($purl)
             ->review(array_map(function ($review) {
                 return Schema::Review()
                     ->reviewRating(Schema::Rating()
