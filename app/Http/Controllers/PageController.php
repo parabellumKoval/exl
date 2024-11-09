@@ -181,9 +181,9 @@ if ($reviews) {
     }
 
     if($page->slug != '/') {
-        $purl = url('/' . $page->slug);
+        $purl = $page->name; //url('/' . $page->slug);
     } else {
-        $purl = url('/');
+        $purl = config('app.name'); //url('/');
     }
 
     // Основной объект WebPage с информацией о главном объекте — Product
