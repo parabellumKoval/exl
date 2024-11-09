@@ -183,7 +183,7 @@ if ($reviews) {
     if($page->slug != '/') {
         $purl = url('/' . $page->slug);
     } else {
-        $purl = config('app.name');
+        $purl = "https://".config('app.name');
     }
 
     // Основной объект WebPage с информацией о главном объекте — Product
