@@ -171,34 +171,39 @@ class PageController extends Controller
         ->itemListElement($items);
     }
 
-    if($reviews) {
-        
-      if($schema_org) {
+if ($reviews) {
+    
+    // Проверка и инициализация $schema_org как WebPage
+    if ($schema_org) {
         $schema_org = $schema_org->webpage();
-      } else {
+    } else {
         $schema_org = Schema::WebPage();
-      }
-
-      $schema_org = $schema_org
-        ->mainEntity(Schema::game()
-          ->name(config('app.name'))
-        ->review(array_map(function($review) {
-            return Schema::review()
-              ->reviewRating(Schema::Rating()
-                ->ratingValue($review['rating'])
-                ->bestRating(5)
-                ->worstRating(1))
-              ->author(Schema::Person()
-                ->name($review['author']))
-              ->datePublished($review['published_at'])
-              ->reviewBody($review['text']);
-        }, $reviews['reviews']->toArray()))
-        ->aggregateRating(Schema::AggregateRating()
-          ->ratingValue($reviews['total_rating'])
-          ->ratingCount($reviews['sum_reviews'])
-        ));
-        
     }
+
+    // Основной объект WebPage с информацией о главном объекте — Product
+    $schema_org = $schema_org
+        ->mainEntity(Schema::Product()
+            ->name(config('app.name'))
+            ->review(array_map(function ($review) {
+                return Schema::Review()
+                    ->reviewRating(Schema::Rating()
+                        ->ratingValue($review['rating'])
+                        ->bestRating(5)
+                        ->worstRating(1)
+                    )
+                    ->author(Schema::Person()
+                        ->name($review['author'])
+                    )
+                    ->datePublished($review['published_at'])
+                    ->reviewBody($review['text']);
+            }, $reviews['reviews']->toArray()))
+            ->aggregateRating(Schema::AggregateRating()
+                ->ratingValue($reviews['total_rating'])
+                ->ratingCount($reviews['sum_reviews'])
+            )
+        );
+}
+
 
     return $schema_org;
   }
