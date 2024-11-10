@@ -35,7 +35,6 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
   <!--{!! NoCaptcha::renderJs() !!}-->
 
     <script> 
-      // Function that loads reCAPTCHA on form input focus
       function reCaptchaOnFocus() {
         const head = document.getElementsByTagName('head')[0];
         const script = document.createElement('script');
@@ -43,14 +42,12 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
         script.src = 'https://www.google.com/recaptcha/api.js';
         head.appendChild(script);
     
-        // Remove event listeners after the script is loaded to avoid multiple calls
         const inputs = document.querySelectorAll('#comment-author, #comment-body');
         inputs.forEach(input => {
           input.removeEventListener('focus', reCaptchaOnFocus);
         });
       };
     
-      // Add event listener to the form inputs
       document.addEventListener('DOMContentLoaded', function() {
         const inputs = document.querySelectorAll('#comment-author, #comment-body');
         inputs.forEach(input => {
