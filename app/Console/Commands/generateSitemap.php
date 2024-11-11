@@ -84,28 +84,30 @@ class generateSitemap extends Command
      * @return void
      */
     private function addPage($page, $sitemap, $last_mod, $priority, $lang = null) {
-      $home_item = Url::create($page->slug)
-              ->setLastModificationDate($last_mod)
-              ->setPriority($priority)
-              ->addAlternate($page->slug, $page->localeAnyway);
-           
-      if($page->relatedPages) {
-        foreach($page->relatedPages as $rel_page) {
-          if($rel_page->localeAnyway) {
-            $home_item = $home_item->addAlternate($rel_page->slug, $rel_page->localeAnyway);
-          }
+        $localeAnyway = str_replace('_', '-', $page->localeAnyway);
+        $home_item = Url::create($page->slug)
+            ->setLastModificationDate($last_mod)
+            ->setPriority($priority)
+            ->addAlternate($page->slug, $localeAnyway);
+    
+        if($page->relatedPages) {
+            foreach($page->relatedPages as $rel_page) {
+                $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway);
+                if($relatedLocale) {
+                    $home_item = $home_item->addAlternate($rel_page->slug, $relatedLocale);
+                }
+            }
         }
-      }
-
-      if($page->parent) {
-        $xDefaultSlug = $page->parent->slug;
-      }else {
-        $xDefaultSlug = $page->slug;
-      }
-
-      $home_item = $home_item->addAlternate($xDefaultSlug, 'x-default');
-
-      $sitemap = $sitemap->add($home_item);
-      return $sitemap;
+    
+        if($page->parent) {
+            $xDefaultSlug = $page->parent->slug;
+        } else {
+            $xDefaultSlug = $page->slug;
+        }
+    
+        $home_item = $home_item->addAlternate($xDefaultSlug, 'x-default');
+    
+        $sitemap = $sitemap->add($home_item);
+        return $sitemap;
     }
 }
