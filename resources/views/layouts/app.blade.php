@@ -4,7 +4,8 @@ $meta_description = isset($meta_description) && !empty($meta_description)? $meta
 $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
 
 $landing_lang = $landing->seo['locale'];
-$lang = $locale ?? $landing_lang;
+$lang = str_replace('_', '-', $locale ?? $landing_lang);
+$lang_og = $locale ?? $landing_lang;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $lang }}">
@@ -15,7 +16,19 @@ $lang = $locale ?? $landing_lang;
       <meta property="og:title" content="{{ $meta_title }} — {{ now()->year }}" />
       <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }} — {{ now()->year }}" />
       <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}" />
-      <meta property="og:locale" content="{{ $lang }}" />
+      <meta property="og:locale" content="{{ $lang_og }}" />
+      <meta property="og:locale:alternate" content="{{ $lang_og }}" />
+      @if($page->relatedPages)
+        @foreach($page->relatedPages as $rel_page)
+      <meta property="og:locale:alternate" content="{{ $rel_page->localeAnyway }}" />
+        @endforeach
+      @endif
+      @if($page->parent)
+      <meta property="og:locale:alternate" content="x-default" />
+      @endif
+      @if($page->is_home)
+      <meta property="og:locale:alternate" content="x-default" />
+      @endif
       <meta property="og:type" content="website" />
       <meta property="og:url" content="{{ url()->current() }}" />
       <meta property="og:image" content="{{ url('/images/logo.png') }}" />
