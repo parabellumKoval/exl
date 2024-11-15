@@ -34,7 +34,6 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
   <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
 
   <!-- GOOGLE RECAPTCHA -->
-  <!--{!! NoCaptcha::renderJs() !!}-->
 
     <script> 
       function reCaptchaOnFocus() {
