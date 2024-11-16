@@ -32,8 +32,8 @@ $lang_og = $locale ?? $landing_lang;
       <meta property="og:type" content="website" />
       <meta property="og:url" content="{{ url()->current() }}" />
       <meta property="og:image" content="{{ url('/images/logo.png') }}" />
-      <meta property="og:image:secure_url" content="{{ url('/images/logo.png') }}" />
-      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:secure_url" content="{{ url('/images/logo.webp') }}" />
+      <meta property="og:image:type" content="image/webp" />
 
       <title>{{ $meta_title }} — {{ now()->year }}</title>
       <meta name="description" content="{{ $meta_description }} — {{ now()->year }}" />
