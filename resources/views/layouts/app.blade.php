@@ -14,7 +14,7 @@ $lang_og = $locale ?? $landing_lang;
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
       <meta property="og:title" content="{{ $meta_title }} — {{ now()->year }}" />
-      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ $meta_title }} — {{ now()->year }}" />
+      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ now()->year }}" />
       <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}" />
       <meta property="og:locale" content="{{ $lang_og }}" />
       <meta property="og:locale:alternate" content="{{ $lang_og }}" />
