@@ -45,11 +45,14 @@ $lang_og = $locale ?? $landing_lang;
       <!-- HREFLANGS -->
       <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}" />
       
-      @if($page->relatedPages)
-        @foreach($page->relatedPages as $rel_page)
-        <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $rel_page->localeAnyway }}" />
-        @endforeach
-      @endif
+        @if($page->relatedPages)
+            @foreach($page->relatedPages as $rel_page)
+                @php
+                    $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway);
+                @endphp
+                <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $relatedLocale }}" />
+            @endforeach
+        @endif
 
       @if($page->parent)
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
