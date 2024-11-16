@@ -67,7 +67,7 @@ class generateSitemap extends Command
       
       // Other pages
       foreach($pages as $page) {
-        $sitemap = $this->addPage($page, $sitemap, $page->created_at, '0.6');
+        $sitemap = $this->addPage($page, $sitemap, $page->created_at, '0.9');
       }
 
       $sitemap = $sitemap->writeToFile($url);
