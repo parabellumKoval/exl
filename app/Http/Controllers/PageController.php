@@ -186,9 +186,9 @@ if ($reviews) {
         $purl = url('/');
     }
     
-    // Основной объект WebPage с информацией о главном объекте — Product
+    // Основной объект WebPage с информацией о главном объекте — Game
     $schema_org = $schema_org
-        ->mainEntity(Schema::Product()
+        ->mainEntity(Schema::Game()
             ->name($page->seo['meta_title'])
             ->description($page->seo['meta_description'])
             ->url($purl)
