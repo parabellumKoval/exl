@@ -8,7 +8,7 @@ $lang = str_replace('_', '-', $locale ?? $landing_lang);
 $lang_og = $locale ?? $landing_lang;
 @endphp
 <!DOCTYPE html>
-<html lang="{{ $lang }}">
+<html dir="ltr" lang="{{ $lang }}">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
