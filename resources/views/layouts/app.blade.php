@@ -92,6 +92,37 @@ $lang_og = $locale ?? $landing_lang;
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
       @endif
       
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const firstDescriptionParagraph = document.querySelector('.description p');
+            if (firstDescriptionParagraph) {
+              const articleBody = firstDescriptionParagraph.textContent;
+              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
+              if (ldJsonScript) {
+                let ldJson = JSON.parse(ldJsonScript.innerHTML);
+                ldJson.articleBody = articleBody;
+                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
+              }
+            }
+            const sections = document.querySelectorAll('section[id^="section"]');
+            const sectionTitles = [];
+            sections.forEach(section => {
+              const heading = section.querySelector('h1, h2');
+              if (heading) {
+                sectionTitles.push(heading.textContent.trim());
+              }
+            });
+            if (sectionTitles.length > 0) {
+              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
+              if (ldJsonScript) {
+                let ldJson = JSON.parse(ldJsonScript.innerHTML);
+                ldJson.section = sectionTitles;
+                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
+              }
+            }
+          });
+        </script>
+      
         <script type="application/ld+json">{
           "@context": "https://schema.org",
           "@type": "Article",
@@ -122,39 +153,7 @@ $lang_og = $locale ?? $landing_lang;
             "{{ $landing->seo['site_name'] }}"
           ]
         }</script>
-        
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const firstDescriptionParagraph = document.querySelector('.description p');
-            if (firstDescriptionParagraph) {
-              const articleBody = firstDescriptionParagraph.textContent;
-              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
-              if (ldJsonScript) {
-                let ldJson = JSON.parse(ldJsonScript.innerHTML);
-                ldJson.articleBody = articleBody;
-                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
-              }
-            }
-            const sections = document.querySelectorAll('section[id^="section"]');
-            const sectionTitles = [];
-            sections.forEach(section => {
-              const heading = section.querySelector('h1, h2');
-              if (heading) {
-                sectionTitles.push(heading.textContent.trim());
-              }
-            });
-            if (sectionTitles.length > 0) {
-              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
-              if (ldJsonScript) {
-                let ldJson = JSON.parse(ldJsonScript.innerHTML);
-                ldJson.section = sectionTitles;
-                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
-              }
-            }
-          });
-        </script>
 
-      
       <script type="text/javascript" src="{{ url('/app-js/add.js') }}" defer></script>
   </head>
   <body>
