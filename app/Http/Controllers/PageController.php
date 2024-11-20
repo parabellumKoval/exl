@@ -206,7 +206,7 @@ if ($reviews) {
                     ->author(Schema::Person()
                         ->name($review['author'])
                     )
-                    ->datePublished(\Carbon\Carbon::parse($review['published_at'])format('Y-m-d\TH:i:s'))
+                    ->datePublished(\Carbon\Carbon::parse($review['published_at'])->format('Y-m-d\TH:i:s'))
                     ->reviewBody($stipReview);
             }, $reviews['reviews']->toArray()))
             ->aggregateRating(Schema::AggregateRating()
