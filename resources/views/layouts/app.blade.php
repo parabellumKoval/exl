@@ -98,7 +98,8 @@ $lang_og = $locale ?? $landing_lang;
           "headline": "{{ $meta_title }} — {{ now()->year }}",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "{{ url()->current() }}"
+            "@id": "{{ url()->current() }}",
+            "url": "{{ url()->current() }}"
           },
           "image": "{{ url('/images/logo.webp') }}",
           "author": {
