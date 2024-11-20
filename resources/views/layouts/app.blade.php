@@ -76,6 +76,10 @@ $lang_og = $locale ?? $landing_lang;
         @endforeach
       @endif
 
+      @if($page->is_home)
+          <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
+      @endif
+      
       <!-- COMMON TAGS -->
       @if($landing->head_stack)
         @foreach($landing->head_stack as $tag)
@@ -88,12 +92,9 @@ $lang_og = $locale ?? $landing_lang;
           <link href="{{ $link }}" rel="stylesheet" onload="this.media='all'" />
         @endforeach
       @endif
-
+      
       <!-- header stack -->
       @stack('header')
-      @if($page->is_home)
-          <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
-      @endif
   </head>
   <body>
 
