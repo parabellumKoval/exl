@@ -187,6 +187,9 @@ if ($reviews) {
     }
     
     // Основной объект WebPage с информацией о главном объекте — Game
+    $decoReview = html_entity_decode($review['text']);
+    $stipReview = strip_tags($decoReview);
+
     $schema_org = $schema_org
         ->mainEntity(Schema::Casino()
             ->name($page->seo['meta_title'])
@@ -203,7 +206,7 @@ if ($reviews) {
                         ->name($review['author'])
                     )
                     ->datePublished($review['published_at'])
-                    ->reviewBody(html_entity_decode(($review['text']));
+                    ->reviewBody($stipReview);
             }, $reviews['reviews']->toArray()))
             ->aggregateRating(Schema::AggregateRating()
                 ->ratingValue($reviews['total_rating'])
