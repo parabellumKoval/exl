@@ -93,34 +93,45 @@ $lang_og = $locale ?? $landing_lang;
       @endif
       
       <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const firstDescriptionParagraph = document.querySelector('.description p');
-            if (firstDescriptionParagraph) {
-              const articleBody = firstDescriptionParagraph.textContent;
-              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
-              if (ldJsonScript) {
-                let ldJson = JSON.parse(ldJsonScript.innerHTML);
-                ldJson.articleBody = articleBody;
-                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
-              }
-            }
-            const sections = document.querySelectorAll('section[id^="section"]');
-            const sectionTitles = [];
-            sections.forEach(section => {
-              const heading = section.querySelector('h1, h2');
-              if (heading) {
-                sectionTitles.push(heading.textContent.trim());
+        document.addEventListener("DOMContentLoaded", function () {
+          const firstDescriptionParagraph = document.querySelector('.description p');
+          if (firstDescriptionParagraph) {
+            const articleBody = firstDescriptionParagraph.textContent;
+            const ldJsonScripts = document.querySelectorAll('script[type="application/ld+json"]');
+        
+            ldJsonScripts.forEach(ldJsonScript => {
+              let ldJson;
+        
+              try {
+                ldJson = JSON.parse(ldJsonScript.innerHTML);
+                if (ldJson["@type"] === "Article") {
+                  ldJson.articleBody = articleBody;
+        
+                  const sections = document.querySelectorAll('section[id^="section"]');
+                  const sectionTitles = [];
+                  sections.forEach(section => {
+                    const heading = section.querySelector('h1, h2');
+                    if (heading) {
+                      sectionTitles.push(heading.textContent.trim());
+                    }
+                  });
+        
+                  if (sectionTitles.length > 0) {
+                    ldJson.section = sectionTitles;
+                  }
+        
+                  const newLdJsonScript = document.createElement('script');
+                  newLdJsonScript.type = 'application/ld+json';
+                  newLdJsonScript.textContent = JSON.stringify(ldJson, null, 2);
+        
+                  ldJsonScript.parentNode.replaceChild(newLdJsonScript, ldJsonScript);
+                }
+              } catch (e) {
+                console.error('Error fetching JSON-LD:', e);
               }
             });
-            if (sectionTitles.length > 0) {
-              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
-              if (ldJsonScript) {
-                let ldJson = JSON.parse(ldJsonScript.innerHTML);
-                ldJson.section = sectionTitles;
-                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
-              }
-            }
-          });
+          }
+        });
         </script>
       
         <script type="application/ld+json">{
