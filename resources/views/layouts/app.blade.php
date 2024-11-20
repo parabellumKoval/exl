@@ -63,7 +63,7 @@ $lang_og = $locale ?? $landing_lang;
       @if(isset($in_index) && !$in_index)
         <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
       @else
-        <meta name="robots" content="index, follow, noarchive" />
+        <meta name="robots" content="index, follow, noarchive, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       @endif
 
       <!-- SEO TAGS -->
