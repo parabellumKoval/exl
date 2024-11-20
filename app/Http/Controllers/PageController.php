@@ -11,6 +11,8 @@ use Spatie\SchemaOrg\Schema;
 use App\Models\Page;
 use App\Models\Review;
 
+use Carbon\Carbon;
+
 class PageController extends Controller
 {
   private $landing_key = null;
@@ -204,7 +206,7 @@ if ($reviews) {
                     ->author(Schema::Person()
                         ->name($review['author'])
                     )
-                    ->datePublished($review['published_at'])
+                    ->datePublished(\Carbon\Carbon::parse($review['published_at'])format('Y-m-d\TH:i:s'))
                     ->reviewBody($stipReview);
             }, $reviews['reviews']->toArray()))
             ->aggregateRating(Schema::AggregateRating()
