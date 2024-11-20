@@ -72,10 +72,6 @@ $lang_og = $locale ?? $landing_lang;
           {!! $tag->tag !!}
         @endforeach
       @endif
-
-      @if($page->parent || $page->is_home)
-          <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
-      @endif
       
       <!-- COMMON TAGS -->
       @if($landing->head_stack)
@@ -92,6 +88,9 @@ $lang_og = $locale ?? $landing_lang;
       
       <!-- header stack -->
       @stack('header')
+      @if($page->parent || $page->is_home)
+        <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
+      @endif
   </head>
   <body>
 
