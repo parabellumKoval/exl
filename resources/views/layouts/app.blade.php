@@ -23,10 +23,7 @@ $lang_og = $locale ?? $landing_lang;
       <meta property="og:locale:alternate" content="{{ $rel_page->localeAnyway }}" />
         @endforeach
       @endif
-      @if($page->parent)
-      <meta property="og:locale:alternate" content="x-default" />
-      @endif
-      @if($page->is_home)
+      @if($page->parent || $page->is_home)
       <meta property="og:locale:alternate" content="x-default" />
       @endif
       <meta property="og:type" content="website" />
@@ -76,7 +73,7 @@ $lang_og = $locale ?? $landing_lang;
         @endforeach
       @endif
 
-      @if($page->is_home)
+      @if($page->parent || $page->is_home)
           <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
       @endif
       
