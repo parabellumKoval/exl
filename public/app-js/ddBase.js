@@ -1,4 +1,4 @@
-function() {
+(function() {
     const lang = document.documentElement.getAttribute("lang") || "en";
     const images = document.querySelectorAll("img");
     const links = document.querySelectorAll('a[target="_blank"]');
@@ -32,4 +32,4 @@ links.forEach(link => {
         }
     }
 });
-}
+}());
