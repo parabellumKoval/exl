@@ -104,7 +104,8 @@ $lang_og = $locale ?? $landing_lang;
           "image": "{{ url('/images/logo.webp') }}",
           "author": {
             "@type": "Organization",
-            "name": "{{ $landing->seo['site_name'] }}"
+            "name": "{{ $landing->seo['site_name'] }}",
+            "url": "{{ url()->current() }}"
           },
           "publisher": {
             "@type": "Organization",
@@ -115,8 +116,8 @@ $lang_og = $locale ?? $landing_lang;
             }
           },
           "description": "{{ $meta_description }} — {{ now()->year }}",
-          "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}",
-          "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}",
+          "datePublished": "{{ $page->created_at->timezone('UTC+2')->format('Y-m-d\TH:i:s') }}",
+          "dateModified": "{{ $page->updated_at->timezone('UTC+2')->format('Y-m-d\TH:i:s') }}",
           "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
           "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
