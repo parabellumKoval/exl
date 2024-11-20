@@ -194,6 +194,7 @@ if ($reviews) {
             ->name($page->seo['meta_title'])
             ->description($page->seo['meta_description'])
             ->url($purl)
+            ->address($purl)
             ->review(array_map(function ($review) {
                 $decoReview = html_entity_decode($review['text']);
                 $stipReview = strip_tags($decoReview);
