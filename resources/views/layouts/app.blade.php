@@ -118,7 +118,7 @@ $lang_og = $locale ?? $landing_lang;
           "description": "{{ $meta_description }} — {{ now()->year }}",
           "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}+03:00",
           "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}+03:00",
-          "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
+          "articleBody": "{{ $meta_title }}. {{ $meta_description }}. {{ $landing->seo['site_name'] }} — {{ now()->year }}",
           "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
 
