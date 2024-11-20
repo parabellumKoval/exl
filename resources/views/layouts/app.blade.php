@@ -116,8 +116,8 @@ $lang_og = $locale ?? $landing_lang;
             }
           },
           "description": "{{ $meta_description }} — {{ now()->year }}",
-          "datePublished": "{{ $page->created_at->timezone('Europe/Berlin')->format('Y-m-d\TH:i:s') }}",
-          "dateModified": "{{ $page->updated_at->timezone('Europe/Berlin')->format('Y-m-d\TH:i:s') }}",
+          "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}+2",
+          "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}+2",
           "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
           "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
