@@ -1,10 +1,8 @@
 var reviewsBase;
 var selectBase;
-var ddBase;
 
 document.addEventListener('DOMContentLoaded',function()
 {    
-    ddBase = new ddBase();
 	reviewsBase = new ReviewBase();
 	selectBase = new SelectBase();
 	
