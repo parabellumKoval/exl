@@ -159,7 +159,9 @@ $lang_og = $locale ?? $landing_lang;
           "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}",
           "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}",
           "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
+          @if($meta_keywords != '')
           "keywords": "{{ $landing->seo['site_name'] }}",
+          @endif
           "section": [
             "{{ $landing->seo['site_name'] }}"
           ]
