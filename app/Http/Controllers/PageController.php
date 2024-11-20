@@ -203,7 +203,7 @@ if ($reviews) {
                         ->name($review['author'])
                     )
                     ->datePublished($review['published_at'])
-                    ->reviewBody($review['text']);
+                    ->reviewBody(html_entity_decode($review['text']));
             }, $reviews['reviews']->toArray()))
             ->aggregateRating(Schema::AggregateRating()
                 ->ratingValue($reviews['total_rating'])
