@@ -156,8 +156,8 @@ $lang_og = $locale ?? $landing_lang;
             }
           },
           "description": "{{ $meta_description }} — {{ now()->year }}",
-          "datePublished": "{{ $page->created_at }}",
-          "dateModified": "{{ $page->updated_at }}",
+          "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}",
+          "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}",
           "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
           "keywords": "{{ $landing->seo['site_name'] }}",
           "section": [
