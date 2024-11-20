@@ -187,15 +187,14 @@ if ($reviews) {
     }
     
     // Основной объект WebPage с информацией о главном объекте — Game
-    $decoReview = html_entity_decode($review['text']);
-    $stipReview = strip_tags($decoReview);
-
     $schema_org = $schema_org
         ->mainEntity(Schema::Casino()
             ->name($page->seo['meta_title'])
             ->description($page->seo['meta_description'])
             ->url($purl)
             ->review(array_map(function ($review) {
+                $decoReview = html_entity_decode($review['text']);
+                $stipReview = strip_tags($decoReview);
                 return Schema::Review()
                     ->reviewRating(Schema::Rating()
                         ->ratingValue($review['rating'])
