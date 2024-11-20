@@ -91,6 +91,70 @@ $lang_og = $locale ?? $landing_lang;
       @if($page->parent || $page->is_home)
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
       @endif
+      
+        <script type="application/ld+json">{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "{{ $meta_title }} — {{ now()->year }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ url()->current() }}"
+          },
+          "image": "{{ url('/images/logo.webp') }}",
+          "author": {
+            "@type": "Organization",
+            "name": "{{ $landing->seo['site_name'] }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{ $landing->seo['site_name'] }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ url('/images/logo.webp') }}"
+            }
+          },
+          "description": "{{ $meta_description }} — {{ now()->year }}",
+          "datePublished": "{{ $page->created_at }}",
+          "dateModified": "{{ $page->updated_at }}",
+          "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
+          "keywords": "{{ $landing->seo['site_name'] }}",
+          "section": [
+            "{{ $landing->seo['site_name'] }}"
+          ]
+        }</script>
+        
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const firstDescriptionParagraph = document.querySelector('.description p');
+            if (firstDescriptionParagraph) {
+              const articleBody = firstDescriptionParagraph.textContent;
+              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
+              if (ldJsonScript) {
+                let ldJson = JSON.parse(ldJsonScript.innerHTML);
+                ldJson.articleBody = articleBody;
+                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
+              }
+            }
+            const sections = document.querySelectorAll('section[id^="section"]');
+            const sectionTitles = [];
+            sections.forEach(section => {
+              const heading = section.querySelector('h1, h2');
+              if (heading) {
+                sectionTitles.push(heading.textContent.trim());
+              }
+            });
+            if (sectionTitles.length > 0) {
+              const ldJsonScript = document.querySelector('script[type="application/ld+json"]');
+              if (ldJsonScript) {
+                let ldJson = JSON.parse(ldJsonScript.innerHTML);
+                ldJson.section = sectionTitles;
+                ldJsonScript.innerHTML = JSON.stringify(ldJson, null, 2);
+              }
+            }
+          });
+        </script>
+
+      
       <script type="text/javascript" src="{{ url('/app-js/add.js') }}" defer></script>
   </head>
   <body>
