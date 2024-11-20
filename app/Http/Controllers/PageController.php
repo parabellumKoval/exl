@@ -188,7 +188,7 @@ if ($reviews) {
     
     // Основной объект WebPage с информацией о главном объекте — Game
     $schema_org = $schema_org
-        ->mainEntity(Schema::Game()
+        ->mainEntity(Schema::Casino()
             ->name($page->seo['meta_title'])
             ->description($page->seo['meta_description'])
             ->url($purl)
