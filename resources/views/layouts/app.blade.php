@@ -91,49 +91,7 @@ $lang_og = $locale ?? $landing_lang;
       @if($page->parent || $page->is_home)
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"{{ $landing->seo['site_name'] }} — {{ now()->year }}","url":"{{ url()->current() }}","logo":"{{ url('/images/logo.webp') }}","contactPoint":[{"@type":"ContactPoint","contactType":"customer support"}]}</script>
       @endif
-      
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const firstDescriptionParagraph = document.querySelector('.description p');
-          if (firstDescriptionParagraph) {
-            const articleBody = firstDescriptionParagraph.textContent;
-            const ldJsonScripts = document.querySelectorAll('script[type="application/ld+json"]');
-        
-            ldJsonScripts.forEach(ldJsonScript => {
-              let ldJson;
-        
-              try {
-                ldJson = JSON.parse(ldJsonScript.innerHTML);
-                if (ldJson["@type"] === "Article") {
-                  ldJson.articleBody = articleBody;
-        
-                  const sections = document.querySelectorAll('section[id^="section"]');
-                  const sectionTitles = [];
-                  sections.forEach(section => {
-                    const heading = section.querySelector('h1, h2');
-                    if (heading) {
-                      sectionTitles.push(heading.textContent.trim());
-                    }
-                  });
-        
-                  if (sectionTitles.length > 0) {
-                    ldJson.section = sectionTitles;
-                  }
-        
-                  const newLdJsonScript = document.createElement('script');
-                  newLdJsonScript.type = 'application/ld+json';
-                  newLdJsonScript.textContent = JSON.stringify(ldJson, null, 2);
-        
-                  ldJsonScript.parentNode.replaceChild(newLdJsonScript, ldJsonScript);
-                }
-              } catch (e) {
-                console.error('Error fetching JSON-LD:', e);
-              }
-            });
-          }
-        });
-        </script>
-      
+
         <script type="application/ld+json">{
           "@context": "https://schema.org",
           "@type": "Article",
@@ -159,12 +117,7 @@ $lang_og = $locale ?? $landing_lang;
           "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}",
           "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}",
           "articleBody": "{{ $meta_title }} — {{ $meta_description }} — {{ now()->year }}",
-          @if($meta_keywords != '')
-          "keywords": "{{ $landing->seo['site_name'] }}",
-          @endif
-          "section": [
-            "{{ $landing->seo['site_name'] }}"
-          ]
+          "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
 
       <script type="text/javascript" src="{{ url('/app-js/add.js') }}" defer></script>
