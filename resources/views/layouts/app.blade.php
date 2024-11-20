@@ -2,7 +2,8 @@
 $meta_title = isset($meta_title) && !empty($meta_title)? $meta_title: $landing->seo['meta_title'];
 $meta_description = isset($meta_description) && !empty($meta_description)? $meta_description: $landing->seo['meta_description'];
 $meta_keywords = isset($meta_keywords) && !empty($meta_keywords)? $meta_keywords: $landing->seo['meta_keywords'];
-
+$shortcodeData = json_decode($page->shortcode, true);
+$value = isset($shortcodeData['c1']['value']) ? strip_tags($shortcodeData['c1']['value']) : '';
 $landing_lang = $landing->seo['locale'];
 $lang = str_replace('_', '-', $locale ?? $landing_lang);
 $lang_og = $locale ?? $landing_lang;
@@ -118,7 +119,7 @@ $lang_og = $locale ?? $landing_lang;
           "description": "{{ $meta_description }} — {{ now()->year }}",
           "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}+03:00",
           "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}+03:00",
-          "articleBody": "{{ $meta_title }}. {{ $meta_description }}. {{ $landing->seo['site_name'] }} — {{ now()->year }}",
+          "articleBody": "{{ $value ?? ($meta_title . '. ' . $meta_description . '. ' . $landing->seo['site_name'] . ' — ' . now()->year) . '...' }}",
           "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
 
