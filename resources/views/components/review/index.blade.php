@@ -29,9 +29,9 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
 
 @push('footer')
   <!-- Base js -->
-  <script type="text/javascript" src="{{ url('/app-js/app.js') }}"></script>
-  <script type="text/javascript" src="{{ url('/app-js/reviewBase.js') }}"></script>
-  <script type="text/javascript" src="{{ url('/app-js/selectBase.js') }}"></script>
+  <script src="{{ url('/app-js/app.js') }}"></script>
+  <script src="{{ url('/app-js/reviewBase.js') }}"></script>
+  <script src="{{ url('/app-js/selectBase.js') }}"></script>
 
   <!-- GOOGLE RECAPTCHA -->
 
@@ -39,7 +39,6 @@ $less_btn_hide = empty($hide_class)? '': 'hide';
       function reCaptchaOnFocus() {
         const head = document.getElementsByTagName('head')[0];
         const script = document.createElement('script');
-        script.type = 'text/javascript';
         script.src = 'https://www.google.com/recaptcha/api.js';
         head.appendChild(script);
     
