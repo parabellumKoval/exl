@@ -15,57 +15,57 @@ $lang_og = $locale ?? $landing_lang;
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-      <meta property="og:title" content="{{ $meta_title }} — {{ now()->year }}" />
-      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ now()->year }}" />
-      <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}" />
-      <meta property="og:locale" content="{{ $lang_og }}" />
-      <meta property="og:locale:alternate" content="{{ $lang_og }}" />
+      <meta property="og:title" content="{{ $meta_title }} — {{ now()->year }}">
+      <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ now()->year }}">
+      <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}">
+      <meta property="og:locale" content="{{ $lang_og }}">
+      <meta property="og:locale:alternate" content="{{ $lang_og }}">
       @if($page->relatedPages)
         @foreach($page->relatedPages as $rel_page)
-      <meta property="og:locale:alternate" content="{{ $rel_page->localeAnyway }}" />
+      <meta property="og:locale:alternate" content="{{ $rel_page->localeAnyway }}">
         @endforeach
       @endif
       @if($page->parent || $page->is_home)
-      <meta property="og:locale:alternate" content="x-default" />
+      <meta property="og:locale:alternate" content="x-default">
       @endif
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="{{ url()->current() }}" />
-      <meta property="og:image" content="{{ url('/images/logo.webp') }}" />
-      <meta property="og:image:secure_url" content="{{ url('/images/logo.webp') }}" />
-      <meta property="og:image:type" content="image/webp" />
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="{{ url()->current() }}">
+      <meta property="og:image" content="{{ url('/images/logo.webp') }}">
+      <meta property="og:image:secure_url" content="{{ url('/images/logo.webp') }}">
+      <meta property="og:image:type" content="image/webp">
 
       <title>{{ $meta_title }} — {{ now()->year }}</title>
-      <meta name="description" content="{{ $meta_description }} — {{ now()->year }}" />
+      <meta name="description" content="{{ $meta_description }} — {{ now()->year }}">
       @if($meta_keywords != '')
-      <meta name="keywords" content="{{ $meta_keywords }}" />
+      <meta name="keywords" content="{{ $meta_keywords }}">
       @endif
-      <link rel="canonical" href="{{ url()->current() }}" />
+      <link rel="canonical" href="{{ url()->current() }}">
 
       <!-- HREFLANGS -->
-      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}" />
+      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}">
       
         @if($page->relatedPages)
             @foreach($page->relatedPages as $rel_page)
                 @php
                     $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway); // es_ES -> es-ES
                 @endphp
-                <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $relatedLocale }}" />
+                <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $relatedLocale }}">
             @endforeach
         @endif
 
       @if($page->parent)
-        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default" />
+        <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default">
       @endif
 
       @if($page->is_home)
-        <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default" />
+        <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default">
       @endif
       
       <!-- ROBOTS -->
       @if(isset($in_index) && !$in_index)
-        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
       @else
-        <meta name="robots" content="index, follow, noarchive, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="robots" content="index, follow, noarchive, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
       @endif
 
       <!-- SEO TAGS -->
@@ -84,7 +84,7 @@ $lang_og = $locale ?? $landing_lang;
       
       @if($landing->allCssLinks)
         @foreach($landing->allCssLinks as $link)
-          <link href="{{ $link }}" rel="stylesheet" onload="this.media='all'" />
+          <link href="{{ $link }}" rel="stylesheet" onload="this.media='all'">
         @endforeach
       @endif
       
