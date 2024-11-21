@@ -1,6 +1,6 @@
 @foreach($reviews as $review)
 <li class="comment {{ $is_reply? 'comments-answer': '' }}" data-comment-id="{{ $review->id }}" id="review-{{ $review->id }}">
-  <article class="comment-article" id="article-comment-1">
+  <article class="comment-article" id="article-comment-{{ $review->id }}">
     <div class="comment-header">
       <div class="comment-user">
         <div class="comment-user-image">
