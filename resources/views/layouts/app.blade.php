@@ -124,7 +124,7 @@ $lang_og = $locale ?? $landing_lang;
           "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
         }</script>
 
-      <script type="text/javascript" src="{{ url('/app-js/add.js') }}" defer></script>
+      <script src="{{ url('/app-js/add.js') }}" defer></script>
   </head>
   <body>
 
@@ -148,7 +148,7 @@ $lang_og = $locale ?? $landing_lang;
 
       @if($landing->allJsLinks)
         @foreach($landing->allJsLinks as $link)
-          <script type="text/javascript" src="{{ $link }}"></script>
+          <script src="{{ $link }}"></script>
         @endforeach
       @endif
       
