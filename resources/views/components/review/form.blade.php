@@ -44,7 +44,7 @@ $classes_string = implode(' ', $classes);
   @endif
 @endif
 
-<div class="comment-form {{ $classes_string }}" data-item="reviewForm" data-form-id="{{ $replyId }}" id="{{ $form_id }}">
+<div class="comment-form {{ $classes_string }}" data-item="reviewForm" data-form-id="{{ $replyId }}" @if($form_id != '')id="{{ $form_id }}@endif">
   <div class="comment-form-title">
     <span>{{ $strings['review_form_title'] }}</span>
     @if(!$replyId)
