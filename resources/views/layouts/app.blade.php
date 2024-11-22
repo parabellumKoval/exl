@@ -121,7 +121,16 @@ $lang_og = $locale ?? $landing_lang;
           "datePublished": "{{ $page->created_at->format('Y-m-d\TH:i:s') }}+03:00",
           "dateModified": "{{ $page->updated_at->format('Y-m-d\TH:i:s') }}+03:00",
           "articleBody": "{{ !empty($value) ? $value . '...' : ($meta_title . '. ' . $meta_description . '. ' . $landing->seo['site_name'] . ' — ' . now()->year) . '...' }}",
-          "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}"
+          "keywords": "{{ $meta_keywords ?? $landing->seo['site_name'] }}",
+          "inLanguage": "{{ $lang }}",
+          "potentialAction": [
+            {
+              "@type": "ReadAction",
+              "target": [
+                "{{ url()->current() }}"
+              ]
+            }
+          ]
         }</script>
 
       <script src="{{ url('/app-js/add.js') }}" defer></script>
