@@ -19,13 +19,13 @@ $lang_og = $locale ?? $landing_lang;
       <meta property="og:site_name" content="{{ $landing->seo['site_name'] }} — {{ now()->year }}">
       <meta property="og:description" content="{{ $meta_description }} — {{ now()->year }}">
       <meta property="og:locale" content="{{ $lang_og }}">
-      <meta property="og:locale:alternate" content="{{ $lang_og }}">
       @if($page->relatedPages)
+      <meta property="og:locale:alternate" content="{{ $lang_og }}">
         @foreach($page->relatedPages as $rel_page)
       <meta property="og:locale:alternate" content="{{ $rel_page->localeAnyway }}">
         @endforeach
       @endif
-      @if($page->parent || $page->is_home)
+      @if($page->parent || $page->relatedPages && $page->is_home)
       <meta property="og:locale:alternate" content="x-default">
       @endif
       <meta property="og:type" content="website">
