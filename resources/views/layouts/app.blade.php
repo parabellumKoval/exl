@@ -42,9 +42,9 @@ $lang_og = $locale ?? $landing_lang;
       <link rel="canonical" href="{{ url()->current() }}">
 
       <!-- HREFLANGS -->
-      <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}">
       
         @if($page->relatedPages)
+        <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}">
             @foreach($page->relatedPages as $rel_page)
                 @php
                     $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway); // es_ES -> es-ES
@@ -53,11 +53,11 @@ $lang_og = $locale ?? $landing_lang;
             @endforeach
         @endif
 
-      @if($page->parent)
+      @if($page->relatedPages && $page->parent)
         <link rel="alternate" href="{{ url($page->parent->slug) }}" hreflang="x-default">
       @endif
 
-      @if($page->is_home)
+      @if($page->relatedPages && $page->is_home)
         <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default">
       @endif
       
