@@ -85,10 +85,16 @@ class generateSitemap extends Command
      */
     private function addPage($page, $sitemap, $last_mod, $priority, $lang = null) {
         $localeAnyway = str_replace('_', '-', $page->localeAnyway);
-        $home_item = Url::create($page->slug)
-            ->setLastModificationDate($last_mod)
-            ->setPriority($priority)
-            ->addAlternate($page->slug, $localeAnyway);
+        if($page->relatedPages) {
+            $home_item = Url::create($page->slug)
+                ->setLastModificationDate($last_mod)
+                ->setPriority($priority)
+                ->addAlternate($page->slug, $localeAnyway);
+        } else {
+            $home_item = Url::create($page->slug)
+                ->setLastModificationDate($last_mod)
+                ->setPriority($priority);
+        }
     
         if($page->relatedPages) {
             foreach($page->relatedPages as $rel_page) {
@@ -104,8 +110,10 @@ class generateSitemap extends Command
         } else {
             $xDefaultSlug = $page->slug;
         }
-    
-        $home_item = $home_item->addAlternate($xDefaultSlug, 'x-default');
+        
+        if($page->relatedPages) {
+            $home_item = $home_item->addAlternate($xDefaultSlug, 'x-default');
+        }
     
         $sitemap = $sitemap->add($home_item);
         return $sitemap;
