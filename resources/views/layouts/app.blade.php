@@ -47,7 +47,7 @@ $lang_og = $locale ?? $landing_lang;
         <link rel="alternate" href="{{ url()->current() }}" hreflang="{{ $lang }}">
             @foreach($page->relatedPages as $rel_page)
                 @php
-                    $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway); // es_ES -> es-ES
+                    $relatedLocale = str_replace('_', '-', $rel_page->localeAnyway);
                 @endphp
                 <link rel="alternate" href="{{ url($rel_page->slug) }}" hreflang="{{ $relatedLocale }}">
             @endforeach
