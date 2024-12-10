@@ -71,7 +71,7 @@
         SetEnvIfNoCase User-Agent "^sitebot" bot
         SetEnvIfNoCase User-Agent "^dotbot" bot
         SetEnvIfNoCase User-Agent "^Linux" bot
-        SetEnvIfNoCase User-Agent ".*SemrushBot.*" bot
+        SetEnvIfNoCase User-Agent ".*Semrush.*" bot
         SetEnvIfNoCase User-Agent "^SemrushBot" bot
         SetEnvIfNoCase User-Agent "^SemrushBot-SA" bot
         SetEnvIfNoCase User-Agent "^SemrushBot-BA" bot
@@ -122,7 +122,7 @@
         SetEnvIfNoCase User-Agent "^BunnySlippers" bot
         SetEnvIfNoCase User-Agent ".*LinkpadBot.*" bot
         SetEnvIfNoCase User-Agent ".*BLEXBot.*" bot
-        SetEnvIfNoCase User-Agent ".*Serpstatbot.*" bot
+        SetEnvIfNoCase User-Agent ".*Serpstat.*" bot
     
         <Limit GET POST HEAD>
             Order Allow,Deny
