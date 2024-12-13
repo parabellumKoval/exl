@@ -19,141 +19,173 @@
 </FilesMatch>
 
 <IfModule mod_headers.c>
-    # Запрещаем встраивать сайт во iframe
     Header always append X-Frame-Options SAMEORIGIN
-    # Защищаем сайт от межсайтового скриптинга
     Header set X-XSS-Protection "1; mode=block"
-    # Предотвращаем атаки на основе mime
     Header set X-Content-Type-Options nosniff
-    # Политика реферера
     Header set Referrer-Policy origin-when-cross-origin
 </IfModule>
 
 <IfModule mod_setenvif.c>
-    <IfModule mod_headers.c>
-        # Устанавливаем переменную окружения 'bot' для нежелательных User-Agent
-        SetEnvIfNoCase User-Agent "^ALittle Client" bot
-        SetEnvIfNoCase User-Agent "^Go-http-client/1.1" bot
-        SetEnvIfNoCase User-Agent "^TprAdsTxtCrawler" bot
-        SetEnvIfNoCase User-Agent "^Photon/1.0" bot
-        SetEnvIfNoCase User-Agent ".*HeadlessChrome/1.*" bot
-        SetEnvIfNoCase User-Agent ".*Twitterbot/1.0.*" bot
-        SetEnvIfNoCase User-Agent ".*Screaming Frog SEO Spider.*" bot
-        SetEnvIfNoCase User-Agent ".*SurdotlyBot.*" bot
-        SetEnvIfNoCase User-Agent ".*curl.*" bot
-        SetEnvIfNoCase User-Agent ".*PixelTools.*" bot
-        SetEnvIfNoCase User-Agent ".*DataForSeoBot.*" bot
-        SetEnvIfNoCase User-Agent ".*PetalBot.*" bot
-        SetEnvIfNoCase User-Agent ".*weborama.*" bot
-        SetEnvIfNoCase User-Agent ".*CFNetwork.*" bot
-        SetEnvIfNoCase User-Agent ".*Python.*" bot
-        SetEnvIfNoCase User-Agent ".*python-requests.*" bot
-        SetEnvIfNoCase User-Agent ".*UptimeRobot.*" bot
-        SetEnvIfNoCase User-Agent ".*Hybrid Advertising.*" bot
-        SetEnvIfNoCase User-Agent ".*Crawler.*" bot
-        SetEnvIfNoCase User-Agent "^LinksMasterRoBot" bot
-        SetEnvIfNoCase User-Agent "^wp_is_mobile" bot
-        SetEnvIfNoCase User-Agent "^LinkStats" bot
-        SetEnvIfNoCase User-Agent "^CNCat" bot
-        SetEnvIfNoCase User-Agent "^linkdexbot" bot
-        SetEnvIfNoCase User-Agent "^meanpathbot" bot
-        SetEnvIfNoCase User-Agent "^NetSeer" bot
-        SetEnvIfNoCase User-Agent "^statdom.ru" bot
-        SetEnvIfNoCase User-Agent "^StatOnlineRuBot" bot
-        SetEnvIfNoCase User-Agent "^WebArtexBot" bot
-        SetEnvIfNoCase User-Agent "^Miralinks Robot" bot
-        SetEnvIfNoCase User-Agent "^Web-Monitoring" bot
-        SetEnvIfNoCase User-Agent "^Runet-Research-Crawler" bot
-        SetEnvIfNoCase User-Agent "^pr-cy.ru" bot
-        SetEnvIfNoCase User-Agent "^SeopultContentAnalyzer" bot
-        SetEnvIfNoCase User-Agent "^Seopult" bot
-        SetEnvIfNoCase User-Agent "^uptimerobot" bot
-        SetEnvIfNoCase User-Agent "^spbot" bot
-        SetEnvIfNoCase User-Agent "^rogerbot" bot
-        SetEnvIfNoCase User-Agent "^sitebot" bot
-        SetEnvIfNoCase User-Agent "^dotbot" bot
-        SetEnvIfNoCase User-Agent "^Linux" bot
-        SetEnvIfNoCase User-Agent ".*Semrush.*" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-SA" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-BA" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-SI" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-SWA" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-CT" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-BM" bot
-        SetEnvIfNoCase User-Agent "^SemrushBot-SEOAB" bot
-        SetEnvIfNoCase User-Agent "^MJ12bot" bot
-        SetEnvIfNoCase User-Agent "^Vivaldi" bot
-        SetEnvIfNoCase User-Agent "^ArchiveBot" bot
-        SetEnvIfNoCase User-Agent "^archive.org_bot" bot
-        SetEnvIfNoCase User-Agent "^ia_archiver" bot
-        SetEnvIfNoCase User-Agent "^ia_archiver-web.archive.org" bot
-        SetEnvIfNoCase User-Agent "^PaleMoon" bot
-        SetEnvIfNoCase User-Agent "^Pale Moon" bot
-        SetEnvIfNoCase User-Agent "Sovetnik" bot
-        SetEnvIfNoCase User-Agent "sovetnik" bot
-        SetEnvIfNoCase User-Agent "80legs" bot
-        SetEnvIfNoCase User-Agent "360Spider" bot
-        SetEnvIfNoCase User-Agent "^8484 Boston Project" bot
-        SetEnvIfNoCase User-Agent "Aboundex" bot
-        SetEnvIfNoCase User-Agent "^Alexibot" bot
-        SetEnvIfNoCase User-Agent "^asterias" bot
-        SetEnvIfNoCase User-Agent "^attach" bot
-        SetEnvIfNoCase User-Agent "^AIBOT" bot
-        SetEnvIfNoCase User-Agent "^Accelerator" bot
-        SetEnvIfNoCase User-Agent "^Ants" bot
-        SetEnvIfNoCase User-Agent ".*Ahrefs.*" bot
-        SetEnvIfNoCase User-Agent "^AhrefsBot" bot
-        SetEnvIfNoCase User-Agent "^AhrefsSiteAudit" bot
-        SetEnvIfNoCase User-Agent "^Ask Jeeves" bot
-        SetEnvIfNoCase User-Agent "^Atomic_Email_Hunter" bot
-        SetEnvIfNoCase User-Agent "^atSpider" bot
-        SetEnvIfNoCase User-Agent "^autoemailspider" bot
-        SetEnvIfNoCase User-Agent "^BackDoorBot" bot
-        SetEnvIfNoCase User-Agent "^BackWeb" bot
-        SetEnvIfNoCase User-Agent "Bandit" bot
-        SetEnvIfNoCase User-Agent "^BatchFTP" bot
-        SetEnvIfNoCase User-Agent "^Bigfoot" bot
-        SetEnvIfNoCase User-Agent "^Black.Hole" bot
-        SetEnvIfNoCase User-Agent "^BlackWidow" bot
-        SetEnvIfNoCase User-Agent "^BlowFish" bot
-        SetEnvIfNoCase User-Agent "^BotALot" bot
-        SetEnvIfNoCase User-Agent "Buddy" bot
-        SetEnvIfNoCase User-Agent "^BuiltBotTough" bot
-        SetEnvIfNoCase User-Agent "^Bullseye" bot
-        SetEnvIfNoCase User-Agent "^BunnySlippers" bot
-        SetEnvIfNoCase User-Agent ".*LinkpadBot.*" bot
-        SetEnvIfNoCase User-Agent ".*BLEXBot.*" bot
-        SetEnvIfNoCase User-Agent ".*Serpstat.*" bot
+    # Проставляем BOT=1 для всех перечисленных User-Agent (добавляем '=1')
+    SetEnvIfNoCase User-Agent "^ALittle Client" BOT=1
+    SetEnvIfNoCase User-Agent "^Go-http-client/1.1" BOT=1
+    SetEnvIfNoCase User-Agent "^TprAdsTxtCrawler" BOT=1
+    SetEnvIfNoCase User-Agent "^Photon/1.0" BOT=1
+    SetEnvIfNoCase User-Agent ".*HeadlessChrome/1.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Twitterbot/1.0.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Screaming Frog SEO Spider.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*SurdotlyBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*curl.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*PixelTools.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*DataForSeoBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*PetalBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*weborama.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*CFNetwork.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Python.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*python-requests.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*UptimeRobot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Hybrid Advertising.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Crawler.*" BOT=1
+    SetEnvIfNoCase User-Agent "^LinksMasterRoBot" BOT=1
+    SetEnvIfNoCase User-Agent "^wp_is_mobile" BOT=1
+    SetEnvIfNoCase User-Agent "^LinkStats" BOT=1
+    SetEnvIfNoCase User-Agent "^CNCat" BOT=1
+    SetEnvIfNoCase User-Agent "^linkdexbot" BOT=1
+    SetEnvIfNoCase User-Agent "^meanpathbot" BOT=1
+    SetEnvIfNoCase User-Agent "^NetSeer" BOT=1
+    SetEnvIfNoCase User-Agent "^statdom.ru" BOT=1
+    SetEnvIfNoCase User-Agent "^StatOnlineRuBot" BOT=1
+    SetEnvIfNoCase User-Agent "^WebArtexBot" BOT=1
+    SetEnvIfNoCase User-Agent "^Miralinks Robot" BOT=1
+    SetEnvIfNoCase User-Agent "^Web-Monitoring" BOT=1
+    SetEnvIfNoCase User-Agent "^Runet-Research-Crawler" BOT=1
+    SetEnvIfNoCase User-Agent "^pr-cy.ru" BOT=1
+    SetEnvIfNoCase User-Agent "^SeopultContentAnalyzer" BOT=1
+    SetEnvIfNoCase User-Agent "^Seopult" BOT=1
+    SetEnvIfNoCase User-Agent "^uptimerobot" BOT=1
+    SetEnvIfNoCase User-Agent "^spbot" BOT=1
+    SetEnvIfNoCase User-Agent "^rogerbot" BOT=1
+    SetEnvIfNoCase User-Agent "^sitebot" BOT=1
+    SetEnvIfNoCase User-Agent "^dotbot" BOT=1
+    SetEnvIfNoCase User-Agent "^Linux" BOT=1
+    SetEnvIfNoCase User-Agent ".*DataDog.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Barkrowler.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*DataForSEO.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Botify.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Siteimprove.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*SiteAuditBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Cốc.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*CCBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Archive.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Dataprovider.com.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Innologica.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Cxense.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Feedly.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Feeder.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Iframely.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Moz rogerbot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*DataForSEO.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Feedbin.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*rss2tg_bot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*InternetArchiveBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*FlipboardRSS.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Arquivo Web Crawler.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Parse.ly.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*MonitoRSS.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Hatena.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*SEO Audit Check Bot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*NewsBlur.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Skroutz.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Webceo.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*marketgoo.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*RSS.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Nooshub.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*FeedWind.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*AddThis.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*OpenRSS.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*RSS-Feed-Parser.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Semrush.*" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-SA" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-BA" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-SI" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-SWA" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-CT" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-BM" BOT=1
+    SetEnvIfNoCase User-Agent "^SemrushBot-SEOAB" BOT=1
+    SetEnvIfNoCase User-Agent "^MJ12bot" BOT=1
+    SetEnvIfNoCase User-Agent "^Vivaldi" BOT=1
+    SetEnvIfNoCase User-Agent "^ArchiveBot" BOT=1
+    SetEnvIfNoCase User-Agent "^archive.org_bot" BOT=1
+    SetEnvIfNoCase User-Agent "^ia_archiver" BOT=1
+    SetEnvIfNoCase User-Agent "^ia_archiver-web.archive.org" BOT=1
+    SetEnvIfNoCase User-Agent "^PaleMoon" BOT=1
+    SetEnvIfNoCase User-Agent "^Pale Moon" BOT=1
+    SetEnvIfNoCase User-Agent "Sovetnik" BOT=1
+    SetEnvIfNoCase User-Agent "sovetnik" BOT=1
+    SetEnvIfNoCase User-Agent "80legs" BOT=1
+    SetEnvIfNoCase User-Agent "360Spider" BOT=1
+    SetEnvIfNoCase User-Agent "^8484 Boston Project" BOT=1
+    SetEnvIfNoCase User-Agent "Aboundex" BOT=1
+    SetEnvIfNoCase User-Agent "^Alexibot" BOT=1
+    SetEnvIfNoCase User-Agent "^asterias" BOT=1
+    SetEnvIfNoCase User-Agent "^attach" BOT=1
+    SetEnvIfNoCase User-Agent "^AIBOT" BOT=1
+    SetEnvIfNoCase User-Agent "^Accelerator" BOT=1
+    SetEnvIfNoCase User-Agent "^Ants" BOT=1
+    SetEnvIfNoCase User-Agent ".*Ahrefs.*" BOT=1
+    SetEnvIfNoCase User-Agent "^AhrefsBot" BOT=1
+    SetEnvIfNoCase User-Agent "^AhrefsSiteAudit" BOT=1
+    SetEnvIfNoCase User-Agent "^Ask Jeeves" BOT=1
+    SetEnvIfNoCase User-Agent "^Atomic_Email_Hunter" BOT=1
+    SetEnvIfNoCase User-Agent "^atSpider" BOT=1
+    SetEnvIfNoCase User-Agent "^autoemailspider" BOT=1
+    SetEnvIfNoCase User-Agent "^BackDoorBot" BOT=1
+    SetEnvIfNoCase User-Agent "^BackWeb" BOT=1
+    SetEnvIfNoCase User-Agent "Bandit" BOT=1
+    SetEnvIfNoCase User-Agent "^BatchFTP" BOT=1
+    SetEnvIfNoCase User-Agent "^Bigfoot" BOT=1
+    SetEnvIfNoCase User-Agent "^Black.Hole" BOT=1
+    SetEnvIfNoCase User-Agent "^BlackWidow" BOT=1
+    SetEnvIfNoCase User-Agent "^BlowFish" BOT=1
+    SetEnvIfNoCase User-Agent "^BotALot" BOT=1
+    SetEnvIfNoCase User-Agent "Buddy" BOT=1
+    SetEnvIfNoCase User-Agent "^BuiltBotTough" BOT=1
+    SetEnvIfNoCase User-Agent "^Bullseye" BOT=1
+    SetEnvIfNoCase User-Agent "^BunnySlippers" BOT=1
+    SetEnvIfNoCase User-Agent ".*LinkpadBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*BLEXBot.*" BOT=1
+    SetEnvIfNoCase User-Agent ".*Serpstat.*" BOT=1
+</IfModule>
 
-        <IfModule mod_authz_core.c>
-            <RequireAll>
-                Require all granted
-                Require not env bot
-            </RequireAll>
-        </IfModule>
-    </IfModule>
+<IfModule mod_authz_core.c>
+    <RequireAll>
+        Require all granted
+        Require not env BOT
+    </RequireAll>
 </IfModule>
 
 <IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Редирект со слэшем на без слэша для не-папок
     <IfModule mod_negotiation.c>
         DirectoryIndex index.php
         Options -MultiViews -Indexes
     </IfModule>
-
-    RewriteEngine On
-
-    # Handle Authorization Header
+    
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Блокируем доступ к robots.txt и sitemap.xml для ботов
+    RewriteCond %{ENV:BOT} =1
+    RewriteRule ^(robots\.txt|sitemap\.xml)$ - [F,L]
 </IfModule>
